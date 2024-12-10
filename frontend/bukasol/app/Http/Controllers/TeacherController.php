@@ -26,7 +26,7 @@ class TeacherController extends Controller
         ] );
 
         $countTeacher = Teacher::count() + 1;
-        $username = strtolower(explode(' ', $validatedData['name'])[0]).$countTeacher;
+        $username = "guru_".strtolower(explode(' ', $validatedData['name'])[0]).$countTeacher;
 
         Validator::make(
             ['username' => $username],
