@@ -7,7 +7,7 @@
                 <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="p-0 m-0">Apakah Anda yakin ingin menghapus data laporan bacaan juz siswa ini?</p>
+                <p class="p-0 m-0">Apakah Anda yakin ingin menghapus data setoran hafalan al-qur'an siswa ini?</p>
                 <p class="p-0 m-0">Peringatan: Data yg sudah dihapus tidak dapat dikembalikan!</p>
             </div>
             <div class="modal-footer">

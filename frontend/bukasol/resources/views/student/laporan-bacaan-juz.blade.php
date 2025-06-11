@@ -20,7 +20,7 @@
         <div class="text-center p-0 m-0 pe-1">
             <div class="row align-items-center mb-4">
                 <div class="col container position-relative">
-                    <h2 class="text-center mb-0">Lembar Laporan Bacaan Juz {{ $juzNumber }} Siswa</h2>
+                    <h2 class="text-center mb-0">Lembar Setoran Hafalan Al-Qur'an Juz {{ $juzNumber }} Siswa</h2>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="col d-flex justify-content-end align-items-end mt-3 mt-md-0">
             <a class="btn btn-outline-dark rounded-3" href="{{ route('juz-report.convert-pdf', [ 'juzNumber' => $juzNumber, 'id' => $studentId ]) }}">
                 <i class="fa-solid fa-file-contract me-1"></i>
-                <span class="d-none d-md-inline">Export Bacaan Juz {{ $juzNumber }}</span>
+                <span class="d-none d-md-inline">Export Hafalan Juz {{ $juzNumber }}</span>
             </a>
         </div>
 

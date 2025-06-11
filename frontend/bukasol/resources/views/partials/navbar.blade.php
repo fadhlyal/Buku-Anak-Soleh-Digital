@@ -160,11 +160,11 @@
                                 <li><a class="dropdown-item" href="{{ route('teacher.laporan-muhasabah-siswa-table.index') }}">Laporan Muhasabah Siswa</a></li>
                                 <li><a class="dropdown-item" href="{{ route('teacher.laporan-pelanggaran-siswa-table.index') }}">Laporan Pelanggaran Siswa</a></li>
                                 <li class="dropdown-submenu">
-                                    <button class="dropdown-item submenu-toggle">Laporan Bacaan Juz &raquo;</button>
+                                    <button class="dropdown-item submenu-toggle">Setoran Hafalan Al-Qur'an Siswa &raquo;</button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Laporan Bacaan Juz 1 Siswa</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Laporan Bacaan Juz 29 Siswa</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Laporan Bacaan Juz 30 Siswa</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Hafalan Juz 1</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Hafalan Juz 29</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Hafalan Juz 30</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -207,14 +207,14 @@
                                             <div class="accordion-item rounded-0">
                                                 <h2 class="accordion-header rounded-0" id="headingJuz">
                                                     <button class="accordion-button collapsed rounded-0 fs-6 ps-3 ms-0" data-bs-toggle="collapse" data-bs-target="#collapseJuz" type="button" aria-expanded="false" aria-controls="collapseJuz">
-                                                        Laporan Bacaan Juz
+                                                        Setoran Hafalan Al-Qur'an Siswa
                                                     </button>
                                                 </h2>
                                                 <div class="accordion-collapse collapse" id="collapseJuz" aria-labelledby="headingJuz">
                                                     <div class="accordion-body">
-                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Laporan Bacaan Juz 1 Siswa</a>
-                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Laporan Bacaan Juz 29 Siswa</a>
-                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Laporan Bacaan Juz 30 Siswa</a>
+                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Hafalan Juz 1</a>
+                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Hafalan Juz 29</a>
+                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('teacher.laporan-bacaan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Hafalan Juz 30</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -260,14 +260,14 @@
                                 Laporan
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="laporanDropdown">
-                                <li><a class="dropdown-item" href="{{ route('student.laporan-muhasabah-siswa-table.index') }}">Laporan Muhasabah Siswa</a></li>
-                                <li><a class="dropdown-item" href="{{ route('student.laporan-pelanggaran-siswa-table.index') }}">Laporan Pelanggaran Siswa</a></li>
+                                <li><a class="dropdown-item" href="{{ route('student.laporan-muhasabah-siswa-table.index') }}">Laporan Muhasabah</a></li>
+                                <li><a class="dropdown-item" href="{{ route('student.laporan-pelanggaran-siswa-table.index') }}">Laporan Pelanggaran</a></li>
                                 <li class="dropdown-submenu">
-                                    <button class="dropdown-item submenu-toggle">Laporan Bacaan Juz &raquo;</button>
+                                    <button class="dropdown-item submenu-toggle">Setoran Hafalan Al-Qur'an &raquo;</button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Laporan Bacaan Juz 1 Siswa</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Laporan Bacaan Juz 29 Siswa</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Laporan Bacaan Juz 30 Siswa</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Hafalan Juz 1</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Hafalan Juz 29</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Hafalan Juz 30</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -278,8 +278,8 @@
                                 Nilai
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="nilaiDropdown">
-                                <li><a class="dropdown-item" href="{{ route('student.nilai-uji-gerakan-siswa-table.index') }}">Nilai Uji Gerakan Siswa</a></li>
-                                <li><a class="dropdown-item" href="{{ route('student.nilai-uji-bacaan-siswa-table.index') }}">Nilai Uji Bacaan Siswa</a></li>
+                                <li><a class="dropdown-item" href="{{ route('student.nilai-uji-gerakan-siswa-table.index') }}">Nilai Uji Gerakan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('student.nilai-uji-bacaan-siswa-table.index') }}">Nilai Uji Bacaan</a></li>
                             </ul>
                         </li>
 
@@ -288,8 +288,8 @@
                                 Aktivitas
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="aktivitasDropdown">
-                                <li><a class="dropdown-item" href="{{ route('student.catatan-harian-siswa-table.index') }}">Catatan Harian Siswa</a></li>
-                                <li><a class="dropdown-item" href="{{ route('student.aktivitas-membaca-siswa-table.index') }}">Aktivitas Membaca Siswa</a></li>
+                                <li><a class="dropdown-item" href="{{ route('student.catatan-harian-siswa-table.index') }}">Catatan Harian</a></li>
+                                <li><a class="dropdown-item" href="{{ route('student.aktivitas-membaca-siswa-table.index') }}">Aktivitas Membaca</a></li>
                             </ul>
                         </li>
 
@@ -304,20 +304,20 @@
                                 </h2>
                                 <div class="accordion-collapse collapse" id="collapseLaporan" aria-labelledby="headingLaporan">
                                     <div class="accordion-body">
-                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-muhasabah-siswa-table.index') }}">Laporan Muhasabah Siswa</a>
-                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-pelanggaran-siswa-table.index') }}">Laporan Pelanggaran Siswa</a>
+                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-muhasabah-siswa-table.index') }}">Laporan Muhasabah</a>
+                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-pelanggaran-siswa-table.index') }}">Laporan Pelanggaran</a>
                                         <div class="accordion" id="juzAccordion">
                                             <div class="accordion-item rounded-0">
                                                 <h2 class="accordion-header rounded-0" id="headingJuz">
                                                     <button class="accordion-button collapsed rounded-0 fs-6 ps-3 ms-0" data-bs-toggle="collapse" data-bs-target="#collapseJuz" type="button" aria-expanded="false" aria-controls="collapseJuz">
-                                                        Laporan Bacaan Juz
+                                                        Setoran Hafalan Al-Qur'an
                                                     </button>
                                                 </h2>
                                                 <div class="accordion-collapse collapse" id="collapseJuz" aria-labelledby="headingJuz">
                                                     <div class="accordion-body">
-                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Laporan Bacaan Juz 1 Siswa</a>
-                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Laporan Bacaan Juz 29 Siswa</a>
-                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Laporan Bacaan Juz 30 Siswa</a>
+                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 1]) }}">Hafalan Juz 1</a>
+                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 29]) }}">Hafalan Juz 29</a>
+                                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.laporan-juz-siswa-table.index', ['juzNumber' => 30]) }}">Hafalan Juz 30</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -335,8 +335,8 @@
                                 </h2>
                                 <div class="accordion-collapse collapse" id="collapseNilai" aria-labelledby="headingNilai">
                                     <div class="accordion-body">
-                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.nilai-uji-gerakan-siswa-table.index') }}">Nilai Uji Gerakan Siswa</a>
-                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.nilai-uji-bacaan-siswa-table.index') }}">Nilai Uji Bacaan Siswa</a>
+                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.nilai-uji-gerakan-siswa-table.index') }}">Nilai Uji Gerakan</a>
+                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.nilai-uji-bacaan-siswa-table.index') }}">Nilai Uji Bacaan</a>
                                     </div>
                                 </div>
                             </div>
@@ -350,8 +350,8 @@
                                 </h2>
                                 <div class="accordion-collapse collapse" id="collapseAktivitas" aria-labelledby="headingAktivitas">
                                     <div class="accordion-body">
-                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.catatan-harian-siswa-table.index') }}">Catatan Harian Siswa</a>
-                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.aktivitas-membaca-siswa-table.index') }}">Aktivitas Membaca Siswa</a>
+                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.catatan-harian-siswa-table.index') }}">Catatan Harian</a>
+                                        <a class="dropdown-item accordion-item container-fluid p-3 w-100 h-100 border-secondary-subtle rounded-0 fs-6 bg-success-subtle" href="{{ route('student.aktivitas-membaca-siswa-table.index') }}">Aktivitas Membaca</a>
                                     </div>
                                 </div>
                             </div>

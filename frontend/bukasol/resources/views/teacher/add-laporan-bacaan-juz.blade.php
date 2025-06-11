@@ -28,7 +28,7 @@
 @section('content_3')
     <div class="p-0 m-0">
         <div class="text-center p-0 m-0">
-            <h2 class="text-center mb-4">Tambah Laporan Bacaan Juz {{ $juzNumber }}</h2>
+            <h2 class="text-center mb-4">Tambah Hafalan Juz {{ $juzNumber }}</h2>
         </div>
         <div class="d-flex justify-content-center align-items-center">
             <div class="p-4 rounded w-75">
@@ -122,8 +122,8 @@
                     <!-- Ayat Input -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold" for="ayat">Ayat</label>
-                        <input class="form-control rounded-3 border-dark border-2 mb-2" id="ayat_awal" name="ayat_awal" type="text" placeholder="Ayat Awal Bacaan Juz..." required>
-                        <input class="form-control rounded-3 border-dark border-2" id="ayat_akhir" name="ayat_akhir" type="text" placeholder="Ayat Akhir Bacaan Juz..." required>
+                        <input class="form-control rounded-3 border-dark border-2 mb-2" id="ayat_awal" name="ayat_awal" type="text" placeholder="Ayat Awal Bacaan Surah..." required>
+                        <input class="form-control rounded-3 border-dark border-2" id="ayat_akhir" name="ayat_akhir" type="text" placeholder="Ayat Akhir Bacaan Surah..." required>
                     </div>
 
                     <!-- Reset and Submit Buttons -->
