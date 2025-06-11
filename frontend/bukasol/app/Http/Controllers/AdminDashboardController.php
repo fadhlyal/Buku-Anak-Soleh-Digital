@@ -142,7 +142,7 @@ class AdminDashboardController extends Controller
             $numbers = substr($student->nisn, -4);
             $password = $letters . $numbers;
 
-            return [ 
+            return [
                 'nisn' => $student->nisn,
                 'name' => $student->user->name ?? 'N/A',
                 'className' => $student->class_name,
@@ -154,7 +154,7 @@ class AdminDashboardController extends Controller
         } );
 
         // Return JSON response
-        return response ()->json ( [ 
+        return response ()->json ( [
             'draw'            => intval ( request ( 'draw' ) ), // Draw counter for DataTables
             'recordsTotal'    => $totalData,
             'recordsFiltered' => $totalFiltered,
@@ -212,7 +212,7 @@ class AdminDashboardController extends Controller
         } );
 
         // Return JSON response
-        return response ()->json ( [ 
+        return response ()->json ( [
             'draw'            => intval ( request ( 'draw' ) ), // Draw counter for DataTables
             'recordsTotal'    => $totalData,
             'recordsFiltered' => $totalFiltered,

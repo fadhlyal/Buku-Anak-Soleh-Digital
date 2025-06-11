@@ -46,11 +46,11 @@ class UserController extends Controller
             Auth::login ( $user );
 
             // Redirect to the dashboard
-            return redirect ()->route ( 'dashboard.index' )->with ( 'success', __ ( 'auth.success' ) );
+            return redirect ()->route ( 'dashboard.index' )->with ( 'success', 'Login Berhasil' );
         }
 
         // If authentication fails, redirect back with an error message
-        return redirect ()->back ()->with ( 'error', __ ( 'auth.failed' ) );
+        return redirect ()->back ()->with ( 'error', 'Username atau Password Salah' );
     }
 
     public function changePassword_index ()
@@ -77,12 +77,15 @@ class UserController extends Controller
         $request->validate ( [ 
             'current_password' => 'required|string',
             'new_password'     => 'required|string|min:8|confirmed',
-        ] );
+        ], [
+            'new_password.min' => 'Password minimal 8 karakter',
+            'new_password.confirmed' => 'Konfirmasi Password Baru Tidak Sesuai'
+        ]);
 
         // Check if the current password is correct
         if ( ! Hash::check ( $request->current_password, Auth::user ()->password ) )
         {
-            return redirect ()->back ()->with ( 'error', 'Password Sekarang salah.' );
+            return redirect ()->back ()->with ( 'error', 'Password Sekarang Salah' );
         }
 
         // Update the user's password
@@ -91,7 +94,7 @@ class UserController extends Controller
         $user->save ();
 
         return redirect()->route('admin.student-table.index')
-            ->with('success', 'Password Berhasil Diubah.');
+            ->with('success', 'Password Berhasil Diubah');
     }
 
     /**
