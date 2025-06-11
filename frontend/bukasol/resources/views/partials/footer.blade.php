@@ -42,7 +42,7 @@
         @if (Request::is('login'))
             <span class="text-light fw-light">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</span>
         @elseif ($pageTitle === 'Dashboard Admin')
-            <span class="text-dark fw-light">&copy; Tim Abdimas Telkom University @2024</span>
+            <span class="text-dark fw-light">&copy; Tim Abdimas Telkom University @2025</span>
         @elseif ($pageTitle === 'Footer')
             <span class="text-dark fw-light">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</span>
         @endif
@@ -54,7 +54,7 @@
         @if (Request::is('login'))
             <span class="text-light fw-light">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</span>
         @elseif ($pageTitle === 'Dashboard Admin')
-            <span class="text-dark fw-light">&copy; Tim Abdimas Telkom University @2024</span>
+            <span class="text-dark fw-light">&copy; Tim Abdimas Telkom University @2025</span>
         @elseif ($pageTitle === 'Footer')
             <span class="text-dark fw-light">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</span>
         @endif
@@ -66,7 +66,7 @@
         @if (Request::is('login'))
             <span class="text-light fw-light">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</span>
         @elseif ($role === 'Admin' || $role === 'Teacher' || $role === 'Student')
-            <span class="text-dark fw-light">&copy; Tim Abdimas Telkom University @2024</span>
+            <span class="text-dark fw-light">&copy; Tim Abdimas Telkom University @2025</span>
         @elseif ($pageTitle === 'Footer')
             <span class="text-dark fw-light">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</span>
         @endif
