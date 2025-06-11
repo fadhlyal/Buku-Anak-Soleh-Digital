@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-center align-items-stretch pt-3 gap-3">
-                    <a class="btn btn-outline-primary flex-fill d-flex justify-content-center align-items-center text-center px-3 py-2 flex-fill d-flex justify-content-center align-items-center text-center px-3 py-2" onclick="document.getElementById('excelFileInput').click();">
+                    <a class="btn btn-outline-primary flex-fill d-flex justify-content-center align-items-center text-center px-3 py-2 disabled-link" onclick="document.getElementById('excelFileInput').click();">
                         <span class="d-none d-md-inline">Import Excel</span>
                     </a>
                     <input type="file" id="excelFileInput" name="file" accept=".xlsx, .xls" style="display: none;" onchange="submitFile()">

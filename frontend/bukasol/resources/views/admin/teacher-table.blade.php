@@ -5,6 +5,12 @@
     <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <style>
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         #teacherTable thead th {
             text-align: center;
             vertical-align: middle;
