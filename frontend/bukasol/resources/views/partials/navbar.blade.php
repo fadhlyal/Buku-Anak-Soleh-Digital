@@ -8,6 +8,13 @@
         .navigation-button {
             width: 100px;
         }
+        
+        header {
+            align-items: center;
+            background-color: #527900;
+            min-height: 80px;
+            max-height: 80px;
+        }
 
         #ProfilePhoto {
             width: 40px;
@@ -94,10 +101,10 @@
 @endpush
 
 <div class="position-fixed top-0 start-0 w-100 p-0 m-0" style="z-index: 3; background-color: saddlebrown">
-    <header class="navbar navbar-expand-md navbar-light bg-light border-bottom mb-0 mx-0 px-3 pt-3" style="align-items: center; background-color: seagreen; min-height: 80px; max-height: min-height: 80px">
+    <header class="navbar navbar-expand-md navbar-light border-bottom mb-0 mx-0 px-3 pt-3">
         <div class="container-fluid p-0 m-0 h-100" style="min-width: 100%; align-items: center">
             <a class="navbar-brand p-0 m-0 border-0" href="{{ route('dashboard.index') }}">
-                <h4 class="poppins-bold p-0 m-0">SD AR-RAFI</h4>
+                <h4 class="poppins-bold p-0 m-0 text-white">SD AR-RAFI</h4>
             </a>
 
             <button class="navbar-toggler p-0 m-0" data-bs-toggle="collapse" data-bs-target="#navbarContent" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,12 +116,12 @@
                     @if (isset($role) && $role == 'Admin')
                         <!-- Admin Navbar for Desktop View -->
                         <li class="nav-item px-2 mb-2" id="FirstItem">
-                            <a class="btn btn-secondary navigation-button" href="{{ route('admin.student-table.index') }}">
+                            <a class="btn btn-light navigation-button fw-medium" href="{{ route('admin.student-table.index') }}">
                                 Siswa
                             </a>
                         </li>
                         <li class="nav-item px-2 mb-2">
-                            <a class="btn btn-secondary navigation-button" href="{{ route('admin.teacher-table.index') }}">
+                            <a class="btn btn-light navigation-button fw-medium" href="{{ route('admin.teacher-table.index') }}">
                                 Guru
                             </a>
                         </li>
@@ -146,7 +153,7 @@
                         @endphp
                         <!-- Dropdown Menu for Desktop View -->
                         <li class="dropdown px-2 mb-2" id="FirstItem">
-                            <button class="nav-item btn btn-secondary navigation-button" id="laporanDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-item btn btn-light navigation-button fw-medium" id="laporanDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Laporan
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="laporanDropdown">
@@ -164,7 +171,7 @@
                         </li>
 
                         <li class="dropdown px-2 mb-2">
-                            <button class="nav-item btn btn-secondary navigation-button" id="nilaiDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-item btn btn-light navigation-button fw-medium" id="nilaiDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Nilai
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="nilaiDropdown">
@@ -174,7 +181,7 @@
                         </li>
 
                         <li class="dropdown px-2 mb-2">
-                            <button class="nav-item btn btn-secondary navigation-button" id="aktivitasDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-item btn btn-light navigation-button fw-medium" id="aktivitasDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Aktivitas
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="aktivitasDropdown">
@@ -249,7 +256,7 @@
                     @elseif (isset($role) && $role == 'Student')
                         <!-- Dropdown Menu for Desktop View -->
                         <li class="dropdown px-2 mb-2" id="FirstItem">
-                            <button class="nav-item btn btn-secondary navigation-button" id="laporanDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-item btn btn-light navigation-button fw-medium" id="laporanDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Laporan
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="laporanDropdown">
@@ -267,7 +274,7 @@
                         </li>
 
                         <li class="dropdown px-2 mb-2">
-                            <button class="nav-item btn btn-secondary navigation-button" id="nilaiDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-item btn btn-light navigation-button fw-medium" id="nilaiDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Nilai
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="nilaiDropdown">
@@ -277,7 +284,7 @@
                         </li>
 
                         <li class="dropdown px-2 mb-2">
-                            <button class="nav-item btn btn-secondary navigation-button" id="aktivitasDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="nav-item btn btn-light navigation-button fw-medium" id="aktivitasDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Aktivitas
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="aktivitasDropdown">
@@ -355,7 +362,7 @@
                 <!-- Profile Section for Desktop -->
                 <ul class="navbar-nav ms-auto mt-0 d-none d-md-flex">
                     <li class="nav-item dropdown">
-                        <a class="nav-link d-flex align-items-center" id="profileDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                        <a class="nav-link d-flex align-items-center text-white fw-medium" id="profileDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                             <img id="ProfilePhoto" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Photo">
                             <span class="ms-3">—</span>
                             <span class="ms-2 me-2">{{ isset($name) ? $name : 'NAME' }}</span>
@@ -379,7 +386,7 @@
                 <div class="accordion mobile-profile-section d-md-none mt-3">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingProfile">
-                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseProfile" type="button" aria-expanded="false" aria-controls="collapseProfile">
+                            <button class="accordion-button collapsed fw-medium" data-bs-toggle="collapse" data-bs-target="#collapseProfile" type="button" aria-expanded="false" aria-controls="collapseProfile">
                                 <img id="ProfilePhoto" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Photo">
                                 <span class="ms-3">—</span>
                                 <span class="ms-2 me-2">{{ isset($name) ? $name : 'NAME' }}</span>

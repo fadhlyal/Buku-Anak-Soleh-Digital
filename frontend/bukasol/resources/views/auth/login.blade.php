@@ -141,7 +141,7 @@
                         <img id="LoginLogo" src="{{ asset('Logo.png') }}" alt="Logo">
                     </div>
 
-                    <h2 class="text-center rounded-1 pt-0 mt-2 fw-light">Buku Anak Soleh Digital</h2>
+                    <h2 class="text-center rounded-1 pt-0 mt-2 fw-bold">Buku Anak Soleh Digital</h2>
 
                     <!-- Error message display -->
                     @if (session('error'))
