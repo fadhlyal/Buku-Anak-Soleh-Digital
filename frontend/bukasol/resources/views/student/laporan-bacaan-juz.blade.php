@@ -26,16 +26,19 @@
         </div>
 
         <div class="col d-flex justify-content-end align-items-end mt-3 mt-md-0">
-            <a class="btn btn-outline-dark rounded-3" href="{{ route('juz-report.convert-pdf', [ 'juzNumber' => $juzNumber, 'id' => $studentId ]) }}">
+            <!-- Export Button -->
+            <button type="button" class="btn btn-outline-dark rounded-3 me-2" data-bs-toggle="modal" data-bs-target="#pdfModal">
                 <i class="fa-solid fa-file-contract me-1"></i>
-                <span class="d-none d-md-inline">Export Hafalan Juz {{ $juzNumber }}</span>
-            </a>
+                <span class="d-none d-md-inline">Export Hafalan Al-Qur'an Juz {{ $juzNumber }}</span>
+            </button>
         </div>
 
         <div class="text-center table-responsive">
             <table class="table table-bordered table-striped table-sm" id="laporanBacaanJuzSiswaTable">
             </table>
         </div>
+
+        @include('student.partials.laporan-bacaan-juz-filter-pdf')
     </div>
 @endsection
 

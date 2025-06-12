@@ -26,10 +26,12 @@
         </div>
 
         <div class="col d-flex justify-content-end align-items-end mt-3 mt-md-0">
-            <a class="btn btn-outline-dark rounded-3 me-2" href="{{ route('reading-activity.convert-pdf', [ 'id' => $studentId ]) }}">
+            <!-- Export Button -->
+            <button type="button" class="btn btn-outline-dark rounded-3 me-2" data-bs-toggle="modal" data-bs-target="#pdfModal">
                 <i class="fa-solid fa-file-contract me-1"></i>
                 <span class="d-none d-md-inline">Export Aktivitas Membaca</span>
-            </a>
+            </button>
+
             <a class="btn btn-outline-dark rounded-3" href="{{ route('student.aktivitas-membaca-siswa-add.index') }}">
                 <i class="fa-solid fa-plus me-1"></i>
                 <span class="d-none d-md-inline">Tambah Aktivitas Membaca</span>
@@ -41,6 +43,7 @@
             </table>
         </div>
 
+        @include('student.partials.aktivitas-membaca-siswa-filter-pdf')
         @include('student.partials.aktivitas-membaca-siswa-delete')
         @include('student.partials.modal-kode-unik-paraf-orang-tua-reading-activity')
     </div>
