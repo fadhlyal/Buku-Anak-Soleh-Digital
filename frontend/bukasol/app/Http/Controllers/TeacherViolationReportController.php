@@ -129,7 +129,7 @@ class TeacherViolationReportController extends Controller
                 'studentName'  => $student->user->name,
                 'violationTotal' => $violationTotal,
                 'teacherSign'  => $teacherSignFalseCount === 0,
-                'action' => view('teacher.partials.laporan-pelanggaran-action-button', ['studentId' => $student->id])->render()
+                'action' => view('teacher.partials.laporan-pelanggaran-action-button', ['studentId' => $student->id, 'teacherSign' =>  $teacherSignFalseCount === 0])->render()
             ];
         } );
 
@@ -257,5 +257,19 @@ class TeacherViolationReportController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
         ]);
+    }
+
+    public function violation_report_approveAll( $studentId )
+    {
+        $reports = ViolationReport::where('student_id', $studentId)
+            ->where('teacher_sign', false)
+            ->get();
+
+        foreach ($reports as $report) {
+            $report->teacher_sign = true;
+            $report->save();
+        }
+
+        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
     }
 }

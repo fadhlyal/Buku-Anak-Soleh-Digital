@@ -264,6 +264,12 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'juz-report.teacher-sign' );
 
+        Route::put (
+            '/juz{juzNumber}-report/teacher-sign-all/{id}',
+            [ TeacherJuzReportController::class, 'juz_report_approveAll' ]
+        )
+            ->name ( 'juz-report.teacher-sign-all' );
+
         // Teacher Violation Report
         Route::get (
             '/laporan-pelanggaran-siswa',
@@ -307,6 +313,12 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'violation-report.teacher-sign' );
 
+        Route::put (
+            '/violation-report/teacher-sign-all/{id}',
+            [ TeacherViolationReportController::class, 'violation_report_approveAll' ]
+        )
+            ->name ( 'violation-report.teacher-sign-all' );
+
         // Teacher Muhasabah Report
         Route::get (
             '/laporan-muhasabah-siswa',
@@ -331,6 +343,12 @@ Route::prefix ( 'teacher-dashboard' )
             [ TeacherMuhasabahReportController::class, 'teacher_sign_muhasabah_report' ]
         )
             ->name ( 'muhasabah-report.teacher-sign' );
+
+        Route::put (
+            '/muhasabah-report/teacher-sign-all/{id}',
+            [ TeacherMuhasabahReportController::class, 'muhasabah_report_approveAll' ]
+        )
+            ->name ( 'muhasabah-report.teacher-sign-all' );
 
         // Teacher Prayer Grade
         Route::get (
@@ -381,6 +399,12 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'prayer-grade.teacher-sign' );
 
+        Route::put (
+            '/prayer-grade/teacher-sign-all/{id}',
+            [ TeacherPrayerGradeController::class, 'prayer_grade_approveAll' ]
+        )
+            ->name ( 'prayer-grade.teacher-sign-all' );
+
         // Teacher Prayer Recitation Grade
         Route::get (
             '/nilai-uji-bacaan-siswa',
@@ -430,6 +454,12 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'prayer-recitation-grade.teacher-sign' );
 
+        Route::put (
+            '/prayer-recitation-grade/teacher-sign-all/{id}',
+            [ TeacherPrayerRecitationGradeController::class, 'prayer_recitation_grade_approveAll' ]
+        )
+            ->name ( 'prayer-recitation-grade.teacher-sign-all' );
+
         // Teacher Notes Activity
         Route::get (
             '/catatan-harian-siswa',
@@ -467,6 +497,12 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'activity-notes.teacher-sign' );
 
+        Route::put (
+            '/activity-notes/teacher-sign-all/{id}',
+            [ TeacherActivityNotesController::class, 'activity_notes_approveAll' ]
+        )
+            ->name ( 'activity-notes.teacher-sign-all' );
+
         // Teacher Read Activity
         Route::get (
             '/aktivitas-membaca-siswa',
@@ -485,6 +521,12 @@ Route::prefix ( 'teacher-dashboard' )
             [ TeacherReadActivityController::class, 'teacher_sign_read_activity' ]
         )
             ->name ( 'read-activity.teacher-sign' );
+
+        Route::put (
+            '/read-activity/teacher-sign-all/{id}',
+            [ TeacherReadActivityController::class, 'read_activity_approveAll' ]
+        )
+            ->name ( 'read-activity.teacher-sign-all' );
     } );
 
 Route::prefix ( 'admin-dashboard' )

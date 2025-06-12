@@ -125,7 +125,7 @@ class TeacherPrayerGradeController extends Controller
                 'avgSemester2' => number_format ( $avgSemester2, 2 ),
                 'parentSign'   => $parentSignFalseCount === 0,
                 'teacherSign'  => $teacherSignFalseCount === 0,
-                'action' => view('teacher.partials.nilai-uji-gerakan-siswa-action-button', ['studentId' => $student->id])->render()
+                'action' => view('teacher.partials.nilai-uji-gerakan-siswa-action-button', ['studentId' => $student->id, 'teacherSign'  => $teacherSignFalseCount === 0 ])->render()
             ];
         } );
 
@@ -309,5 +309,19 @@ class TeacherPrayerGradeController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
         ]);
+    }
+
+    public function prayer_grade_approveAll( $studentId )
+    {
+        $reports = PrayerGrade::where('student_id', $studentId)
+            ->where('teacher_sign', false)
+            ->get();
+
+        foreach ($reports as $report) {
+            $report->teacher_sign = true;
+            $report->save();
+        }
+
+        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
     }
 }
