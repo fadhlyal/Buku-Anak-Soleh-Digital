@@ -237,9 +237,15 @@ class TeacherViolationReportController extends Controller
         return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
     }
 
-    public function violation_report_pdf( $studentId )
+    public function violation_report_pdf( Request $request, $studentId )
     {
+        $tahun = $request->query('year');
+        $bulan = $request->query('month');
+        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+
         $violationReports = ViolationReport::where('student_id', $studentId)
+            ->whereYear('time_stamp', $tahun)
+            ->whereMonth('time_stamp', $bulan)
             ->orderBy('time_stamp')
             ->get();
 
@@ -251,7 +257,7 @@ class TeacherViolationReportController extends Controller
         ];
 
         $pdf = Pdf::loadView('convert.violation-report-template', $data);
-        $fileName = "Lembar Pelanggaran_".$student->class_name."_".$student->user->name.".pdf";
+        $fileName = "Lembar Pelanggaran_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
             'Content-Type' => 'application/pdf',

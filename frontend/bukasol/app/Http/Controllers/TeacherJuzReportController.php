@@ -249,10 +249,16 @@ class TeacherJuzReportController extends Controller
         return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
     }
 
-    public function juz_report_pdf( $juzNumber, $studentId )
+    public function juz_report_pdf( Request $request, $juzNumber, $studentId )
     {
+        $tahun = $request->query('year');
+        $bulan = $request->query('month');
+        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+
         $juzReports = Juz::where('student_id', $studentId)
                         ->where('juz_number', $juzNumber)
+                        ->whereYear('time_stamp', $tahun)
+                        ->whereMonth('time_stamp', $bulan)
                         ->orderBy('time_stamp')
                         ->get();
 
@@ -265,7 +271,7 @@ class TeacherJuzReportController extends Controller
         ];
 
         $pdf = Pdf::loadView('convert.juz-report-template', $data);
-        $fileName = "Lembar Laporan Juz ".$juzNumber."_".$student->class_name."_".$student->user->name.".pdf";
+        $fileName = "Lembar Laporan Juz ".$juzNumber."_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
             'Content-Type' => 'application/pdf',

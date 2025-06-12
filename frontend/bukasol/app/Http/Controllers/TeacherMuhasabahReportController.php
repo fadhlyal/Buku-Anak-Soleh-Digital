@@ -225,9 +225,15 @@ class TeacherMuhasabahReportController extends Controller
         return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
     }
 
-    public function muhasabah_report_pdf( $studentId )
+    public function muhasabah_report_pdf( Request $request, $studentId )
     {
+        $tahun = $request->query('year');
+        $bulan = $request->query('month');
+        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+
         $muhasabahReports = MuhasabahReport::where('student_id', $studentId)
+            ->whereYear('time_stamp', $tahun)
+            ->whereMonth('time_stamp', $bulan)
             ->orderBy('time_stamp')
             ->get();
 
@@ -239,7 +245,7 @@ class TeacherMuhasabahReportController extends Controller
         ];
 
         $pdf = Pdf::loadView('convert.muhasabah-report-template', $data);
-        $fileName = "Lembar Muhasabah Ibadah Harian_".$student->class_name."_".$student->user->name.".pdf";
+        $fileName = "Lembar Muhasabah Ibadah Harian_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
             'Content-Type' => 'application/pdf',

@@ -278,10 +278,15 @@ class TeacherPrayerRecitationGradeController extends Controller
         return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
     }
 
-    public function prayer_recitation_grade_pdf( $studentId )
+    public function prayer_recitation_grade_pdf( Request $request, $studentId )
     {
+        $tahun = $request->query('year');
+        $bulan = $request->query('month');
+        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
 
         $prayerRecitationGrades = PrayerRecitationGrade::where('student_id', $studentId)
+            ->whereYear('time_stamp', $tahun)
+            ->whereMonth('time_stamp', $bulan)
             ->orderBy('time_stamp')
             ->orderBy('reading_category')
             ->get();
@@ -305,7 +310,7 @@ class TeacherPrayerRecitationGradeController extends Controller
         ];
 
         $pdf = Pdf::loadView('convert.prayer-recitation-grade-template', $data);
-        $fileName = "Lembar Nilai Uji Bacaan".$student->class_name."_".$student->user->name.".pdf";
+        $fileName = "Lembar Nilai Uji Bacaan_".$student->class_name."_".$student->user->name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
             'Content-Type' => 'application/pdf',

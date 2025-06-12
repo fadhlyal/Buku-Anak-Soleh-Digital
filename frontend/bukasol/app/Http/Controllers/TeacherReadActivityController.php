@@ -170,9 +170,15 @@ class TeacherReadActivityController extends Controller
         return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
     }
 
-    public function reading_activity_pdf( $studentId )
+    public function reading_activity_pdf( Request $request, $studentId )
     {
+        $tahun = $request->query('year');
+        $bulan = $request->query('month');
+        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+
         $readActivities = ReadActivity::where('student_id', $studentId)
+                                ->whereYear('time_stamp', $tahun)
+                                ->whereMonth('time_stamp', $bulan)
                                 ->orderBy('time_stamp')
                                 ->get();
                                 
@@ -184,7 +190,7 @@ class TeacherReadActivityController extends Controller
         ];
 
         $pdf = Pdf::loadView('convert.reading-activity-template', $data);
-        $fileName = "Lembar Aktivitas Membaca_".$student->class_name."_".$student->user->name.".pdf";
+        $fileName = "Lembar Aktivitas Membaca_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
             'Content-Type' => 'application/pdf',

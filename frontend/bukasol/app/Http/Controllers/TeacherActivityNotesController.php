@@ -249,9 +249,15 @@ class TeacherActivityNotesController extends Controller
         return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
     }
 
-    public function activity_notes_pdf( $studentId )
+    public function activity_notes_pdf( Request $request, $studentId )
     {
+        $tahun = $request->query('year');
+        $bulan = $request->query('month');
+        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+
         $noteActivities = Note::where('student_id', $studentId)
+                            ->whereYear('time_stamp', $tahun)
+                            ->whereMonth('time_stamp', $bulan)
                             ->orderBy('time_stamp')
                             ->get();
 
@@ -263,7 +269,7 @@ class TeacherActivityNotesController extends Controller
         ];
 
         $pdf = Pdf::loadView('convert.activity-note-template', $data);
-        $fileName = "Lembar Catatan Harian_".$student->class_name."_".$student->user->name.".pdf";
+        $fileName = "Lembar Catatan Harian_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
             'Content-Type' => 'application/pdf',
