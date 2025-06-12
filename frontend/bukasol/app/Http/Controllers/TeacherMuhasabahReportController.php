@@ -244,7 +244,8 @@ class TeacherMuhasabahReportController extends Controller
             'student' => $student,
         ];
 
-        $pdf = Pdf::loadView('convert.muhasabah-report-template', $data);
+        $pdf = Pdf::loadView('convert.muhasabah-report-template', $data)
+                ->setOptions(['isRemoteEnabled' => true]);
         $fileName = "Lembar Muhasabah Ibadah Harian_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [

@@ -270,7 +270,8 @@ class TeacherJuzReportController extends Controller
             'student' => $student,
         ];
 
-        $pdf = Pdf::loadView('convert.juz-report-template', $data);
+        $pdf = Pdf::loadView('convert.juz-report-template', $data)
+                ->setOptions(['isRemoteEnabled' => true]);
         $fileName = "Lembar Laporan Juz ".$juzNumber."_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [

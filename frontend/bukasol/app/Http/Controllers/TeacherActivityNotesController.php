@@ -268,7 +268,8 @@ class TeacherActivityNotesController extends Controller
             'student' => $student,
         ];
 
-        $pdf = Pdf::loadView('convert.activity-note-template', $data);
+        $pdf = Pdf::loadView('convert.activity-note-template', $data)
+                ->setOptions(['isRemoteEnabled' => true]);
         $fileName = "Lembar Catatan Harian_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [

@@ -234,7 +234,8 @@ class AdminDashboardController extends Controller
             'students' => $students,
         ];
 
-        $pdf = Pdf::loadView('convert.student-account-template', $data);
+        $pdf = Pdf::loadView('convert.student-account-template', $data)
+                ->setOptions(['isRemoteEnabled' => true]);
         $fileName = "Akun Siswa.pdf";
 
         return Response::make($pdf->output(), 200, [
@@ -257,7 +258,8 @@ class AdminDashboardController extends Controller
             'teachers' => $teachers,
         ];
 
-        $pdf = Pdf::loadView('convert.teacher-account-template', $data);
+        $pdf = Pdf::loadView('convert.teacher-account-template', $data)
+                ->setOptions(['isRemoteEnabled' => true]);
         $fileName = "Akun Guru.pdf";
 
         return Response::make($pdf->output(), 200, [

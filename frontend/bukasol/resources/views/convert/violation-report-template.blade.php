@@ -39,7 +39,7 @@
         <table style="width: 100%; border: none;">
             <tr>
                 <td style="width: 80px; text-align: right; vertical-align: middle; border: none;">
-                    <img src="{{ public_path('Logo.png') }}" alt="Logo" style="width: 60px;">
+                    <img src="{{ asset('Logo.png') }}" alt="Logo" style="width: 60px;">
                 </td>
                 <td style="text-align: center; vertical-align: middle; border: none;">
                     <h2 style="margin: 0; font-size: 16px;">SD AR RAFI 1</h2>
