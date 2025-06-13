@@ -20,7 +20,8 @@
         <div class="text-center p-0 m-0 pe-1">
             <div class="row align-items-center mb-4">
                 <div class="col container position-relative">
-                    <h2 class="text-center mb-0">Lembar Aktivitas Membaca Kelas {{ $className }}</h2>
+                    <h2 class="text-center mb-0">Lembar Aktivitas Membaca</h2>
+                    <h2 class="text-center mb-0">Kelas {{ $className }}</h2>
                 </div>
             </div>
         </div>
