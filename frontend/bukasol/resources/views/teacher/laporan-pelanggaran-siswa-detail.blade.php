@@ -17,7 +17,8 @@
 @section('content_3')
     <div class="p-0 m-0">
         <div class="text-center p-0 m-0">
-            <h2 class="text-center mb-4">Detail Laporan Pelanggaran {{ $violationReport->student->user->name }}</h2>
+            <h2 class="text-center mb-4">Detail Laporan Pelanggaran</h2>
+            <h2 class="text-center mb-0">Siswa {{ $violationReport->student->user->name }}</h2>
         </div>
         <div class="d-flex justify-content-center align-items-center">
             <div class="p-4 rounded w-75">
