@@ -37,8 +37,11 @@
             <table class="table table-bordered table-striped table-sm" id="laporanBacaanJuzSiswaTable">
             </table>
         </div>
+        @php
+            $routes = route('juz-report.convert-pdf', [ 'juzNumber' => $juzNumber, 'id' => $studentId]);
+        @endphp
 
-        @include('student.partials.laporan-bacaan-juz-filter-pdf')
+        @include('partials.filter-pdf')
     </div>
 @endsection
 

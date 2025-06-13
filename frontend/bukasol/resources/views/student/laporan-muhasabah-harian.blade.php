@@ -42,8 +42,11 @@
             <table class="table table-bordered table-striped table-sm" id="laporanMuhasabahHarianSiswaTable">
             </table>
         </div>
+        @php
+            $routes = route('muhasabah-report.convert-pdf', ['id' => $studentId]);
+        @endphp
 
-        @include('student.partials.laporan-muhasabah-harian-filter-pdf')
+        @include('partials.filter-pdf')
         @include('student.partials.modal-kode-unik-paraf-orang-tua-muhasabah-report')
         @include('student.partials.laporan-muhasabah-harian-delete')
 

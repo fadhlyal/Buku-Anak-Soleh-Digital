@@ -42,8 +42,11 @@
             <table class="table table-bordered table-striped table-sm" id="catatanHarianSiswaTable">
             </table>
         </div>
+        @php
+            $routes = route('activity-notes.convert-pdf', ['id' => $studentId]);
+        @endphp
 
-        @include('student.partials.catatan-harian-siswa-filter-pdf')
+        @include('partials.filter-pdf')
         @include('student.partials.catatan-harian-siswa-delete')
     </div>
 @endsection

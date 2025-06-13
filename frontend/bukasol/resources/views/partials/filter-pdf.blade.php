@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="{{ route('juz-report.convert-pdf', [ 'juzNumber' => $juzNumber, 'id' => $studentId ]) }}" method="GET">
+    <form action="{{ $routes }}" method="GET">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="pdfModalLabel">Pilih Bulan dan Tahun</h5>
@@ -12,7 +12,7 @@
                     <label for="month" class="form-label">Bulan</label>
                     <select name="month" id="month" class="form-control" required>
                         @foreach (range(1, 12) as $m)
-                            <option value="{{ $m }}">{{ \Carbon\Carbon::create()->month($m)->format('F') }}</option>
+                            <option value="{{ $m }}">{{ \Carbon\Carbon::create()->locale('id')->month($m)->translatedFormat('F') }}</option>
                         @endforeach
                     </select>
                 </div>

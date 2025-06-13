@@ -37,8 +37,11 @@
             <table class="table table-bordered table-striped table-sm" id="laporanPelanggaranSiswaTable">
             </table>
         </div>
+        @php
+            $routes = route('violation-report.convert-pdf', ['id' => $studentId]);
+        @endphp
 
-        @include('student.partials.laporan-pelanggaran-filter-pdf')
+        @include('partials.filter-pdf')
     </div>
 @endsection
 

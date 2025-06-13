@@ -42,8 +42,11 @@
             <table class="table table-bordered table-striped table-sm" id="aktivitasMembacaSiswaTable">
             </table>
         </div>
+        @php
+            $routes = route('reading-activity.convert-pdf', [ 'id' => $studentId ]);
+        @endphp
 
-        @include('student.partials.aktivitas-membaca-siswa-filter-pdf')
+        @include('partials.filter-pdf')
         @include('student.partials.aktivitas-membaca-siswa-delete')
         @include('student.partials.modal-kode-unik-paraf-orang-tua-reading-activity')
     </div>
