@@ -229,7 +229,7 @@ class TeacherMuhasabahReportController extends Controller
     {
         $tahun = $request->query('year');
         $bulan = $request->query('month');
-        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+        $namaBulan = \Carbon\Carbon::create()->locale('id')->month((int) $bulan)->translatedFormat('F');
 
         $muhasabahReports = MuhasabahReport::where('student_id', $studentId)
             ->whereYear('time_stamp', $tahun)
@@ -242,10 +242,18 @@ class TeacherMuhasabahReportController extends Controller
         $data = [
             'muhasabahReports' => $muhasabahReports,
             'student' => $student,
+            'month' => $namaBulan,
+            'year' => $tahun,
         ];
 
-        $pdf = Pdf::loadView('convert.muhasabah-report-template', $data)
+        $pdf = Pdf::loadView('convert.muhasabah-report-template', $data);
+
+        $isLocal = app()->environment('local');
+        if( !$isLocal ) {
+            $pdf = Pdf::loadView('convert.muhasabah-report-template', $data)
                 ->setOptions(['isRemoteEnabled' => true]);
+        }
+        
         $fileName = "Lembar Muhasabah Ibadah Harian_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [

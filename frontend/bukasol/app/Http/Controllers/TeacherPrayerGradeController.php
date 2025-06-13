@@ -302,8 +302,14 @@ class TeacherPrayerGradeController extends Controller
             'dateToday' => now(),
         ];
 
-        $pdf = Pdf::loadView('convert.prayer-grade-template', $data)
+        $pdf = Pdf::loadView('convert.prayer-grade-template', $data);
+
+        $isLocal = app()->environment('local');
+        if( !$isLocal ) {
+            $pdf = Pdf::loadView('convert.prayer-grade-template', $data)
                 ->setOptions(['isRemoteEnabled' => true]);
+        }
+        
         $fileName = "Lembar Nilai Uji Gerakan_".$student->class_name."_".$student->user->name.".pdf";
 
         return Response::make($pdf->output(), 200, [

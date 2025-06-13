@@ -253,7 +253,7 @@ class TeacherJuzReportController extends Controller
     {
         $tahun = $request->query('year');
         $bulan = $request->query('month');
-        $namaBulan = \Carbon\Carbon::create()->month( (int) $bulan)->translatedFormat('F');
+        $namaBulan = \Carbon\Carbon::create()->locale('id')->month((int) $bulan)->translatedFormat('F');
 
         $juzReports = Juz::where('student_id', $studentId)
                         ->where('juz_number', $juzNumber)
@@ -268,10 +268,18 @@ class TeacherJuzReportController extends Controller
             'juzReports' => $juzReports,
             'juzNumber' => $juzNumber,
             'student' => $student,
+            'month' => $namaBulan,
+            'year' => $tahun,
         ];
 
-        $pdf = Pdf::loadView('convert.juz-report-template', $data)
+        $pdf = Pdf::loadView('convert.juz-report-template', $data);
+
+        $isLocal = app()->environment('local');
+        if( !$isLocal ) {
+            $pdf = Pdf::loadView('convert.juz-report-template', $data)
                 ->setOptions(['isRemoteEnabled' => true]);
+        }
+
         $fileName = "Lembar Laporan Juz ".$juzNumber."_".$student->class_name."_".$student->user->name."_".$namaBulan."_".$tahun.".pdf";
 
         return Response::make($pdf->output(), 200, [
