@@ -16,6 +16,11 @@
             @method('PUT')
         </form>
 
+        <!-- Detail Button to Trigger Detail Modal -->
+        <a class="btn btn-sm btn-primary py-2 me-2" href="{{ route('teacher.laporan-muhasabah-siswa.index', ['id' => $studentId]) }}">
+            <i class="fa fa-eye"></i>
+        </a>
+
         <!-- Export Button -->
         <button type="button" class="btn btn-sm btn-success py-2 me-2" data-bs-toggle="modal" data-bs-target="#pdfModal">
             <i class="fa fa-file-export"></i>
