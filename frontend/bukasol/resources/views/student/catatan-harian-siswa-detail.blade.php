@@ -49,7 +49,7 @@
 
                     <!-- Jawaban Guru Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="jawaban_guru">Jawaban Guru</label>
+                        <label class="form-label fw-semibold" for="jawaban_guru">Respon Guru</label>
                         <textarea class="form-control rounded-3 border-dark border-2" id="jawaban_guru" name="jawaban_guru" rows="3" readonly disabled>{{ $teacherAnswer }}</textarea>
                     </div>
 
