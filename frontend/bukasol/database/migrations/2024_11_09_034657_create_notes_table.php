@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date ( 'time_stamp' );
             $table->string ( 'category' );
             $table->string ( 'activity' );
-            $table->text ( 'detail_activity' );
+            $table->text ( 'activity_detail' );
             $table->string ( 'parent_question' )->nullable ();
             $table->string ( 'teacher_answer' )->nullable ();
             $table->boolean ( 'teacher_sign' )->default ( false );
