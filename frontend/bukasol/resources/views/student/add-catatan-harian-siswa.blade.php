@@ -38,16 +38,22 @@
                         <input class="form-control rounded-3 border-dark border-2" id="hari_tanggal" name="hari_tanggal" type="date" value="{{ $today }}" required>
                     </div>
 
-                    <!-- Agenda Input -->
+                    <!-- Kategori Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="agenda">Agenda</label>
-                        <input class="form-control rounded-3 border-dark border-2" id="agenda" name="agenda" type="text" placeholder="Masukkan Agenda" required>
+                        <label class="form-label fw-semibold" for="kategori">Kategori</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="kategori" name="kategori" type="text" placeholder="Masukkan Kategori" required>
                     </div>
 
-                    <!-- Catatan Harian Input -->
+                    <!-- Aktivitas Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="catatan_harian">Catatan Harian</label>
-                        <textarea class="form-control rounded-3 border-dark border-2" id="catatan_harian" name="catatan_harian" rows="3" placeholder="Masukkan Catatan Harian" required></textarea>
+                        <label class="form-label fw-semibold" for="aktivitas">Aktivitas</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="aktivitas" name="aktivitas" type="text" placeholder="Masukkan Aktivitas" required>
+                    </div>
+
+                    <!-- Rincian Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="rincian_aktivitas">Rincian Aktivitas</label>
+                        <textarea class="form-control rounded-3 border-dark border-2" id="rincian_aktivitas" name="rincian_aktivitas" rows="3" placeholder="Masukkan Rincian Aktivitas" required></textarea>
                     </div>
 
                     <!-- Pertanyaan Orang Tua Input -->

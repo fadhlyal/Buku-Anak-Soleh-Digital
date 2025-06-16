@@ -169,8 +169,9 @@ class TeacherActivityNotesController extends Controller
          // Apply search filter if available
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
-                $q->where('agenda', 'like', "%{$search}%")
-                ->where('content', 'like', "%{$search}%");
+                $q->where('category', 'like', "%{$search}%")
+                ->orwhere('activity', 'like', "%{$search}%")
+                ->orwhere('activity_detail', 'like', "%{$search}%");
             });
         }
 
@@ -200,8 +201,9 @@ class TeacherActivityNotesController extends Controller
             return [
                 'id' => $activityNote->id,
                 'timeStamp' => $activityNote->time_stamp->toDateString(),
-                'agenda' => $activityNote->agenda,
-                'content' => $activityNote->content,
+                'category' => $activityNote->category,
+                'activity' => $activityNote->activity,
+                'activity_detail' => $activityNote->activity_detail,
                 'parentQuestion' => "<span class='{$parentQuestionClass}'>{$parentQuestion}</span>",
                 'teacherSign'    => $activityNote->teacher_sign,
                 'action' => view('teacher.partials.catatan-harian-siswa-detail-action-button', ['noteId' => $activityNote->id])->render()

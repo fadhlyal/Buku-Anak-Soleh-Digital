@@ -92,8 +92,9 @@ class StudentActivityNotesController extends Controller
          // Apply search filter if available
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
-                $q->where('agenda', 'like', "%{$search}%")
-                ->orWhere('content', 'like', "%{$search}%");
+                $q->where('category', 'like', "%{$search}%")
+                ->orWhere('activity', 'like', "%{$search}%")
+                ->orWhere('activity_detail', 'like', "%{$search}%");
             });
         }
 
@@ -110,14 +111,16 @@ class StudentActivityNotesController extends Controller
             return [
                 'id' => $activityNote->id,
                 'timeStamp' => $activityNote->time_stamp->toDateString(),
-                'agenda' => $activityNote->agenda,
-                'content' => $activityNote->content,
+                'category' => $activityNote->category,
+                'activity' => $activityNote->activity,
+                'activity_detail' => $activityNote->activity_detail,
                 'teacherAnswer' => !is_null($activityNote->teacher_answer),
                 'teacherSign' => $activityNote->teacher_sign,
                 'action' => view('student.partials.catatan-harian-siswa-action-button', ['noteId' => $activityNote->id])->render()
             ];
         });
 
+        
         // Return JSON response
         return response ()->json ( [ 
             'draw'            => intval ( $request->input ( 'draw' ) ),
@@ -132,8 +135,9 @@ class StudentActivityNotesController extends Controller
         $validatedData = $request->validate ( [ 
             'studentId'      => 'required|exists:students,id',
             'hari_tanggal' => 'required|date',
-            'agenda' => 'required|string|max:255',
-            'catatan_harian' => 'required|string',
+            'kategori' => 'required|string|max:255',
+            'aktivitas' => 'required|string|max:255',
+            'rincian_aktivitas' => 'required|string',
             'pertanyaan_orang_tua' => 'nullable|string',
         ] );
 
@@ -145,12 +149,12 @@ class StudentActivityNotesController extends Controller
             return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal Tersebut sudah Dibuat.' );
         }
 
-        
         Note::create ( [
             'student_id' => $validatedData[ 'studentId' ],
             'time_stamp' => $validatedData[ 'hari_tanggal' ],
-            'agenda'  => $validatedData[ 'agenda' ],
-            'content'  => $validatedData[ 'catatan_harian' ],
+            'category'  => $validatedData[ 'kategori' ],
+            'activity'  => $validatedData[ 'aktivitas' ],
+            'activity_detail'  => $validatedData[ 'rincian_aktivitas' ],
             'parent_question' => $validatedData[ 'pertanyaan_orang_tua' ],
             'teacher_answer' => null,
             'teacher_sign' => false,

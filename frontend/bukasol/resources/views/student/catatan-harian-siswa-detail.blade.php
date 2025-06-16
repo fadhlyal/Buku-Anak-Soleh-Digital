@@ -29,16 +29,22 @@
                         <input class="form-control rounded-3 border-dark border-2" id="hari_tanggal" name="hari_tanggal" type="text" value="{{ \Carbon\Carbon::parse($activityNote->time_stamp)->locale('id')->translatedFormat('l, d-m-Y') }}" readonly disabled>
                     </div>
 
-                    <!-- Agenda Input -->
+                    <!-- Kategori Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="agenda">Agenda</label>
-                        <input class="form-control rounded-3 border-dark border-2" id="agenda" name="agenda" type="text" value="{{ $activityNote->agenda }}" readonly disabled>
+                        <label class="form-label fw-semibold" for="kategori">Kategori</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="kategori" name="kategori" type="text" value="{{ $activityNote->category }}" readonly disabled>
                     </div>
 
-                    <!-- Catatan Harian Input -->
+                    <!-- Aktivitas Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="catatan_harian">Catatan Harian</label>
-                        <textarea class="form-control rounded-3 border-dark border-2" id="catatan_harian" name="catatan_harian" rows="3" readonly disabled>{{ $activityNote->content }}</textarea>
+                        <label class="form-label fw-semibold" for="aktivitas">Aktivitas</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="aktivitas" name="aktivitas" type="text" value="{{ $activityNote->activity }}" readonly disabled>
+                    </div>
+
+                    <!-- Rincian Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="rincian_aktivitas">Rincian Aktivitas</label>
+                        <textarea class="form-control rounded-3 border-dark border-2" id="rincian_aktivitas" name="rincian_aktivitas" rows="3" readonly disabled>{{ $activityNote->activity_detail }}</textarea>
                     </div>
 
                     <!-- Pertanyaan Orang Tua Input -->

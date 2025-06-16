@@ -92,9 +92,9 @@
                         }
                     },
                     {
-                        data: 'agenda',
-                        name: 'agenda',
-                        title: 'Agenda',
+                        data: 'category',
+                        name: 'category',
+                        title: 'Kategori',
                         render: function (data, type, row) {
                             const maxLength = 25;
                             if (data && data.length > maxLength) {
@@ -104,9 +104,21 @@
                         }
                     },
                     {
-                        data: 'content',
-                        name: 'content',
-                        title: 'Catatan',
+                        data: 'activity',
+                        name: 'activity',
+                        title: 'Aktivitas',
+                        render: function (data, type, row) {
+                            const maxLength = 25;
+                            if (data && data.length > maxLength) {
+                                return data.substring(0, maxLength) + '...';
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        data: 'activity_detail',
+                        name: 'activity_detail',
+                        title: 'Rincial Aktivitas',
                         render: function (data, type, row) {
                             const maxLength = 25;
                             if (data && data.length > maxLength) {
