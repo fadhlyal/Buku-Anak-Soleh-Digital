@@ -141,9 +141,14 @@ class StudentActivityNotesController extends Controller
             'pertanyaan_orang_tua' => 'nullable|string',
         ] );
 
-        $existingnote = Note::where('student_id', $validatedData['studentId'])
+        $existingnote = null;
+        
+        if ( $validatedData['kategori'] == "Aktivitas Harian" ) {
+            $existingnote = Note::where('student_id', $validatedData['studentId'])
             ->whereDate('time_stamp', $validatedData['hari_tanggal'])
+            ->where('category', "Aktivitas Harian")
             ->first();
+        }
 
         if ($existingnote) {
             return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal Tersebut sudah Dibuat.' );

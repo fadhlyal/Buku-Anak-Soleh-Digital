@@ -41,19 +41,17 @@
                     <!-- Kategori Input -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold" for="kategori">Kategori</label>
-                        <input class="form-control rounded-3 border-dark border-2" id="kategori" name="kategori" type="text" placeholder="Masukkan Kategori" required>
+                        <select class="form-select rounded-3 border-dark border-2" id="kategori" name="kategori" onchange="handleKategoriChange()" required>
+                            <option value="" disabled selected>Pilih Kategori</option>
+                            <option value="Aktivitas Harian">Aktivitas Harian</option>
+                            <option value="Prestasi">Prestasi</option>
+                            <option value="Ekstrakurikuler">Ekstrakurikuler</option>
+                        </select>
                     </div>
 
-                    <!-- Aktivitas Input -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" for="aktivitas">Aktivitas</label>
-                        <input class="form-control rounded-3 border-dark border-2" id="aktivitas" name="aktivitas" type="text" placeholder="Masukkan Aktivitas" required>
-                    </div>
+                    <!-- Detail Input -->
+                    <div id="kategori-fields">
 
-                    <!-- Rincian Aktivitas Input -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" for="rincian_aktivitas">Rincian Aktivitas</label>
-                        <textarea class="form-control rounded-3 border-dark border-2" id="rincian_aktivitas" name="rincian_aktivitas" rows="3" placeholder="Masukkan Rincian Aktivitas" required></textarea>
                     </div>
 
                     <!-- Pertanyaan Orang Tua Input -->
@@ -82,5 +80,58 @@
                 location.reload();
             }
         });
+
+        function handleKategoriChange() {
+            const selectedKategori = document.getElementById("kategori").value;
+            const fieldContainer = document.getElementById("kategori-fields");
+
+            let html = "";
+                    
+            if (selectedKategori === "Aktivitas Harian") {
+                html = `
+                    <!-- Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="aktivitas">Aktivitas</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="aktivitas" name="aktivitas" type="text" placeholder="Masukkan Aktivitas" required>
+                    </div>
+
+                    <!-- Rincian Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="rincian_aktivitas">Rincian Aktivitas</label>
+                        <textarea class="form-control rounded-3 border-dark border-2" id="rincian_aktivitas" name="rincian_aktivitas" rows="3" placeholder="Masukkan Rincian Aktivitas" required></textarea>
+                    </div>
+                `;
+            } else if (selectedKategori === "Prestasi") {
+                html = `
+                    <!-- Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="aktivitas">Nama Perlombaan</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="aktivitas" name="aktivitas" type="text" placeholder="Masukkan Nama Perlombaan" required>
+                    </div>
+
+                    <!-- Rincian Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="rincian_aktivitas">Rincian Kegiatan Lomba</label>
+                        <textarea class="form-control rounded-3 border-dark border-2" id="rincian_aktivitas" name="rincian_aktivitas" rows="3" placeholder="Masukkan Rincian Kegiatan Lomba" required></textarea>
+                    </div>
+                `;
+            } else if (selectedKategori === "Ekstrakurikuler") {
+                html = `
+                    <!-- Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="aktivitas">Nama Ekstrakurikuler</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="aktivitas" name="aktivitas" type="text" placeholder="Masukkan Nama Ekstrakurikuler" required>
+                    </div>
+
+                    <!-- Rincian Aktivitas Input -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="rincian_aktivitas">Rincian Ekstrakurikuler</label>
+                        <textarea class="form-control rounded-3 border-dark border-2" id="rincian_aktivitas" name="rincian_aktivitas" rows="3" placeholder="Masukkan Rincian Ekstrakurikuler" required></textarea>
+                    </div>
+                `;
+            }
+
+            fieldContainer.innerHTML = html;
+        }
     </script>
 @endpush
