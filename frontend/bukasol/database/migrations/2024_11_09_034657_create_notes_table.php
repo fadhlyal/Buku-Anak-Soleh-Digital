@@ -16,8 +16,9 @@ return new class extends Migration
             $table->id ();
             $table->unsignedBigInteger ( 'student_id' );
             $table->date ( 'time_stamp' );
-            $table->string ( 'agenda' );
-            $table->text ( 'content' );
+            $table->string ( 'category' );
+            $table->string ( 'activity' );
+            $table->text ( 'detail_activity' );
             $table->string ( 'parent_question' )->nullable ();
             $table->string ( 'teacher_answer' )->nullable ();
             $table->boolean ( 'teacher_sign' )->default ( false );
