@@ -48,22 +48,71 @@
 
     <hr>
 
+    <h3>Aktivitas Harian</h3>
     <table >
         <tr>
             <th>No</th>
             <th>Hari/Tanggal</th>
-            <th>Agenda</th>
-            <th>Catatan Harian</th>
+            <th>Aktivitas</th>
+            <th>Rincian Aktivitas</th>
             <th>Pertanyaan Orang Tua</th>
             <th>Jawaban Guru</th>
             <th>Paraf Guru</th>
         </tr>
-        @foreach ($noteActivities as $index => $activity)
+        @foreach ($dailyActivities as $index => $activity)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ \Carbon\Carbon::parse($activity->time_stamp)->locale('id')->translatedFormat('l, d-m-Y') }}</td>
-            <td>{{ $activity->agenda }}</td>
-            <td>{{ $activity->content }}</td>
+            <td>{{ $activity->activity }}</td>
+            <td>{{ $activity->activity_detail }}</td>
+            <td>{{ $activity->parent_question ? $activity->parent_question : '-' }}</td>
+            <td>{{ $activity->teacher_answer ? $activity->teacher_answer : '-'}}</td>
+            <td>{{ $activity->teacher_sign ? 'Sudah' : 'Belum' }}</td>
+        </tr>
+        @endforeach
+    </table>
+
+    <h3>Ekstrakurikuler</h3>
+    <table >
+        <tr>
+            <th>No</th>
+            <th>Hari/Tanggal</th>
+            <th>Nama Ekskul</th>
+            <th>Rincian Ekskul</th>
+            <th>Pertanyaan Orang Tua</th>
+            <th>Jawaban Guru</th>
+            <th>Paraf Guru</th>
+        </tr>
+        @foreach ($extracurriculars as $index => $activity)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ \Carbon\Carbon::parse($activity->time_stamp)->locale('id')->translatedFormat('l, d-m-Y') }}</td>
+            <td>{{ $activity->activity }}</td>
+            <td>{{ $activity->activity_detail }}</td>
+            <td>{{ $activity->parent_question ? $activity->parent_question : '-' }}</td>
+            <td>{{ $activity->teacher_answer ? $activity->teacher_answer : '-'}}</td>
+            <td>{{ $activity->teacher_sign ? 'Sudah' : 'Belum' }}</td>
+        </tr>
+        @endforeach
+    </table>
+
+    <h3>Prestasi</h3>
+    <table >
+        <tr>
+            <th>No</th>
+            <th>Hari/Tanggal</th>
+            <th>Nama Perlombaan</th>
+            <th>Rincian Perlombaan</th>
+            <th>Pertanyaan Orang Tua</th>
+            <th>Jawaban Guru</th>
+            <th>Paraf Guru</th>
+        </tr>
+        @foreach ($achievements as $index => $activity)
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ \Carbon\Carbon::parse($activity->time_stamp)->locale('id')->translatedFormat('l, d-m-Y') }}</td>
+            <td>{{ $activity->activity }}</td>
+            <td>{{ $activity->activity_detail }}</td>
             <td>{{ $activity->parent_question ? $activity->parent_question : '-' }}</td>
             <td>{{ $activity->teacher_answer ? $activity->teacher_answer : '-'}}</td>
             <td>{{ $activity->teacher_sign ? 'Sudah' : 'Belum' }}</td>

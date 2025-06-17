@@ -263,10 +263,16 @@ class TeacherActivityNotesController extends Controller
                             ->orderBy('time_stamp')
                             ->get();
 
+        $aktivitasHarian = $noteActivities->where('category', 'Aktivitas Harian');
+        $ekskul = $noteActivities->where('category', 'Ekstrakurikuler');
+        $prestasi = $noteActivities->where('category', 'Prestasi');
+
         $student = Student::find($studentId);
 
         $data = [
-            'noteActivities' => $noteActivities,
+            'dailyActivities' => $aktivitasHarian,
+            'extracurriculars' => $ekskul,
+            'achievements' => $prestasi,
             'student' => $student,
             'month' => $namaBulan,
             'year' => $tahun,
