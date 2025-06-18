@@ -210,7 +210,7 @@ class StudentActivityNotesController extends Controller
             ->first();
         }
 
-        if ($existingnote) {
+        if ($existingnote && $existingnote->id !== $note->id) {
             return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
         }
 
