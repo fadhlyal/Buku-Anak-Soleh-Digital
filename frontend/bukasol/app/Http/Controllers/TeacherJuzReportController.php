@@ -61,6 +61,22 @@ class TeacherJuzReportController extends Controller
         ] );
     }
 
+    public function index_edit_report( $juzNumber, $reportId )
+    {
+        $juzReport = Juz::find($reportId);
+
+        return view ( 'teacher.edit-laporan-bacaan-juz', [
+            'role' => auth ()->user ()->role,
+            'name' => auth ()->user ()->name,
+            'studentName' => $juzReport->student->user->name,
+            'juzNumber' => $juzNumber,
+            'juzReport' => $juzReport,
+            'reportId' => $reportId,
+            'studentId' => $juzReport->student_id,
+            'page' => 'Edit Laporan Bacaan Juz Siswa'
+        ] );
+    }
+
     public function fetchData_laporan_juz_by_nama_kelas( Request $request )
     {
         // Safely get the length and start, with default values if they're not set
@@ -177,7 +193,7 @@ class TeacherJuzReportController extends Controller
                 'surahName' => $juzReport->surah_name,
                 'surahAyat' => $juzReport->surah_ayat,
                 'teacherSign' => $juzReport->teacher_sign,
-                'action' => view('teacher.partials.laporan-juz-detail-action-button', [ 'reportId' => $juzReport->id ])->render()
+                'action' => view('teacher.partials.laporan-juz-detail-action-button', [ 'reportId' => $juzReport->id, 'juzNumber' => $juzReport->juz_number ])->render()
             ];
         });
 
@@ -223,6 +239,41 @@ class TeacherJuzReportController extends Controller
 
         return redirect()->route('teacher.laporan-bacaan-juz-siswa.index' ,[ 'juzNumber' => $validatedData[ 'juz' ], 'id' => $validatedData[ 'studentId' ] ])
             ->with('success', 'Sukses Menambahkan Data Laporan Baru.');
+    }
+
+    public function update_juz_report( Request $request, $reportId )
+    {
+        $validatedData = $request->validate([
+            'studentId' => 'required|exists:students,id',
+            'juz' => 'required|integer',
+            'tanggal' => 'required|date',
+            'surah' => 'nullable|string|max:255',
+            'ayat_awal' => 'nullable|string|max:255',
+            'ayat_akhir' => 'nullable|string|max:255',
+        ]);
+
+        $juzReport = Juz::findOrFail($reportId);
+
+        $existingReport = Juz::where('student_id', $validatedData['studentId'])
+            ->whereDate('time_stamp', $validatedData['tanggal'])
+            ->where('juz_number', $validatedData['juz'])
+            ->where('surah_name', $validatedData['surah'])
+            ->where('surah_ayat', $validatedData['ayat_awal']."-".$validatedData['ayat_akhir'])
+            ->first();
+
+        if ($existingReport && $existingReport->id !== $juzReport->id) {
+            return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
+        }
+
+        $juzReport->update([
+            'time_stamp' => $validatedData['tanggal'],
+            'surah_name' => $validatedData['surah'],
+            'surah_ayat' => $validatedData['ayat_awal']."-".$validatedData['ayat_akhir'],
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('teacher.laporan-bacaan-juz-siswa.index', [ 'juzNumber' => $validatedData[ 'juz' ], 'id' => $validatedData[ 'studentId' ] ])
+            ->with('success', 'Sukses Mengubah Data Laporan Baru.');
     }
     
     public function delete_juz_report( Request $request, $reportId )

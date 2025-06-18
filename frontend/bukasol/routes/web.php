@@ -282,11 +282,23 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'teacher.laporan-juz-siswa-add.index' );
 
+        Route::get (
+            '/laporan-juz{juzNumber}-siswa-edit/{id}',
+            [ TeacherJuzReportController::class, 'index_edit_report' ]
+        )
+            ->name ( 'teacher.laporan-juz-siswa-edit.index' );
+
         Route::post (
             '/juz-report',
             [ TeacherJuzReportController::class, 'store_juz_report' ]
         )
             ->name ( 'juz-report.store' );
+
+        Route::put (
+            '/juz-report/{id}',
+            [ TeacherJuzReportController::class, 'update_juz_report' ]
+        )
+            ->name ( 'juz-report.update' );
 
         Route::delete (
             '/juz-report/{id}',
