@@ -331,11 +331,23 @@ Route::prefix ( 'teacher-dashboard' )
         )
             ->name ( 'teacher.laporan-pelanggaran-siswa-add.index' );
 
+        Route::get (
+            '/laporan-pelanggaran-siswa-edit/{id}',
+            [ TeacherViolationReportController::class, 'index_edit_report' ]
+        )
+            ->name ( 'teacher.laporan-pelanggaran-siswa-edit.index' );
+
         Route::post (
             '/violation-report',
             [ TeacherViolationReportController::class, 'store_violation_report' ]
         )
             ->name ( 'violation-report.store' );
+
+        Route::put (
+            '/violation-report/{id}',
+            [ TeacherViolationReportController::class, 'update_violation_report' ]
+        )
+            ->name ( 'violation-report.update' );
 
         Route::delete (
             '/violation-report/{id}',

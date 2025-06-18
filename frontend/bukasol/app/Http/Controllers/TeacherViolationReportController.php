@@ -78,6 +78,21 @@ class TeacherViolationReportController extends Controller
         ] );
     }
 
+    public function index_edit_report( $reportId )
+    {
+        $violationReport = ViolationReport::find($reportId);
+
+        return view ( 'teacher.edit-laporan-pelanggaran-siswa', [
+            'role' => auth ()->user ()->role,
+            'name' => auth ()->user ()->name,
+            'studentName' => $violationReport->student->user->name,
+            'violationReport' => $violationReport,
+            'reportId' => $reportId,
+            'studentId' => $violationReport->student_id,
+            'page' => 'Edit Laporan Pelanggaran Siswa'
+        ] );
+    }
+
     public function fetchData_laporan_pelanggaran_by_nama_kelas( Request $request )
     {
         // Safely get the length and start, with default values if they're not set
@@ -211,6 +226,38 @@ class TeacherViolationReportController extends Controller
 
         return redirect()->route('teacher.laporan-pelanggaran-siswa.index', ['id' => $validatedData['studentId']])
             ->with('success', 'Sukses Menambahkan Data Laporan Baru.');
+    }
+
+    public function update_violation_report( Request $request, $reportId )
+    {
+        $validatedData = $request->validate([
+            'studentId' => 'required|exists:students,id',
+            'tanggal' => 'required|date',
+            'detail_pelanggaran' => 'required|string',
+            'konsekuensi' => 'required|string',
+        ]);
+
+        $violationReport = ViolationReport::findOrFail($reportId);
+
+        $existingReport = ViolationReport::where('student_id', $validatedData['studentId'])
+            ->whereDate('time_stamp', $validatedData['tanggal'])
+            ->where('violation_details', $validatedData['detail_pelanggaran'])
+            ->where('consequence', $validatedData['konsekuensi'])
+            ->first();
+
+        if ($existingReport && $existingReport->id !== $violationReport->id) {
+            return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
+        }
+
+        $violationReport->update([
+            'time_stamp' => $validatedData[ 'tanggal' ],
+            'violation_details' => $validatedData[ 'detail_pelanggaran' ],
+            'consequence' => $validatedData[ 'konsekuensi' ],
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('teacher.laporan-pelanggaran-siswa.index', ['id' => $validatedData['studentId']])
+            ->with('success', 'Sukses Mengubah Data Laporan Baru.');
     }
 
     public function delete_violation_report( Request $request, $reportId )
