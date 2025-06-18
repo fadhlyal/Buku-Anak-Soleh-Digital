@@ -236,9 +236,9 @@ class TeacherPrayerGradeController extends Controller
             ->where('id', '!=', $gradeId)
             ->first();
 
-            if ($existingGrade) {
-                return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
-            }
+        if ($existingGrade) {
+            return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
+        }
 
         $prayerGrade->update([
             'motion_category'  => $validatedData['jenis_gerakan'],
