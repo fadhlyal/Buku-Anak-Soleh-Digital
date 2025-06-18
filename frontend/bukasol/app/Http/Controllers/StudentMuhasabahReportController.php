@@ -70,6 +70,21 @@ class StudentMuhasabahReportController extends Controller
         ] );
     }
 
+    public function index_edit_report( $reportId )
+    {
+        $muhasabahReport = MuhasabahReport::find($reportId);
+
+        return view ( 'student.edit-laporan-muhasabah-harian', [
+            'role' => auth ()->user ()->role,
+            'name' => auth ()->user ()->name,
+            'studentName' => $muhasabahReport->student->user->name,
+            'muhasabahReport' => $muhasabahReport,
+            'reportId' => $reportId,
+            'studentId' => $muhasabahReport->student_id,
+            'page' => 'Edit Laporan Muhasabah Siswa'
+        ] );
+    }
+
     public function fetchData_laporan_muhasabah_by_id_siswa( Request $request )
     {
         // Safely get the length and start for pagination
@@ -227,6 +242,85 @@ class StudentMuhasabahReportController extends Controller
 
         return redirect()->route('student.laporan-muhasabah-siswa-table.index')
             ->with('success', 'Sukses Menambahkan Data Laporan Baru.');
+    }
+
+    public function update_muhasabah_report( Request $request, $reportId )
+    {
+        $validatedData = $request->validate([
+            'studentId' => 'required|exists:students,id',
+            'tanggal' => 'required|date',
+            'surah' => 'nullable|string|max:255',
+            'ayat_awal' => 'nullable|string|max:255',
+            'ayat_akhir' => 'nullable|string|max:255',
+            'shalat_sunnah' => 'required|string|in:Sudah,Tidak',
+            'subuh' => 'required|string|in:Sudah,Tidak',
+            'dzuhur' => 'required|string|in:Sudah,Tidak',
+            'ashar' => 'required|string|in:Sudah,Tidak',
+            'maghrib' => 'required|string|in:Sudah,Tidak',
+            'isya' => 'required|string|in:Sudah,Tidak',
+        ]);
+
+        $muhasabahReport = MuhasabahReport::findOrFail($reportId);
+
+        $existingReport = MuhasabahReport::where('student_id', $validatedData['studentId'])
+            ->whereDate('time_stamp', $validatedData['tanggal'])
+            ->first();
+
+        if ($existingReport && $existingReport->id !== $muhasabahReport->id) {
+            return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
+        }
+
+        if( $validatedData['shalat_sunnah'] === "Sudah" ) {
+            $validatedData['shalat_sunnah'] = true;
+        } else {
+            $validatedData['shalat_sunnah'] = false;
+        }
+
+        if( $validatedData['subuh'] === "Sudah" ) {
+            $validatedData['subuh'] = true;
+        } else {
+            $validatedData['subuh'] = false;
+        }
+
+        if( $validatedData['dzuhur'] === "Sudah" ) {
+            $validatedData['dzuhur'] = true;
+        } else {
+            $validatedData['dzuhur'] = false;
+        }
+
+        if( $validatedData['ashar'] === "Sudah" ) {
+            $validatedData['ashar'] = true;
+        } else {
+            $validatedData['ashar'] = false;
+        }
+
+        if( $validatedData['maghrib'] === "Sudah" ) {
+            $validatedData['maghrib'] = true;
+        } else {
+            $validatedData['maghrib'] = false;
+        }
+
+        if( $validatedData['isya'] === "Sudah" ) {
+            $validatedData['isya'] = true;
+        } else {
+            $validatedData['isya'] = false;
+        }
+
+        $muhasabahReport->update([
+            'time_stamp' => $validatedData[ 'tanggal' ],
+            'surah_name' => $validatedData[ 'surah' ],
+            'surah_ayat' => $validatedData[ 'ayat_awal' ]."-".$validatedData[ 'ayat_akhir' ],
+            'sunnah_pray' => $validatedData[ 'shalat_sunnah' ],
+            'subuh_pray' => $validatedData[ 'subuh' ],
+            'dzuhur_pray' => $validatedData[ 'dzuhur' ],
+            'ashar_pray' => $validatedData[ 'ashar' ],
+            'maghrib_pray' => $validatedData[ 'maghrib' ],
+            'isya_pray' => $validatedData[ 'isya' ],
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('student.laporan-muhasabah-siswa-table.index')
+            ->with('success', 'Sukses Mengubah Data Laporan Baru.');
     }
     
     public function delete_muhasabah_report( Request $request, $reportId )

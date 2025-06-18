@@ -90,11 +90,23 @@ Route::prefix ( 'student-dashboard' )
         )
             ->name ( 'student.laporan-muhasabah-siswa-add.index' );
 
+        Route::get (
+            '/laporan-muhasabah-siswa-edit/{id}',
+            [ StudentMuhasabahReportController::class, 'index_edit_report' ]
+        )
+            ->name ( 'student.laporan-muhasabah-siswa-edit.index' );
+
         Route::post (
             '/muhasabah-report',
             [ StudentMuhasabahReportController::class, 'store_muhasabah_report' ]
         )
             ->name ( 'muhasabah-report.store' );
+
+        Route::put (
+            '/muhasabah-report/{id}',
+            [ StudentMuhasabahReportController::class, 'update_muhasabah_report' ]
+        )
+            ->name ( 'muhasabah-report.update' );
 
         Route::delete (
             '/muhasabah-report/{id}',
