@@ -173,11 +173,23 @@ Route::prefix ( 'student-dashboard' )
         )
             ->name ( 'student.catatan-harian-siswa-add.index' );
 
+        Route::get (
+            '/catatan-harian-siswa-edit/{id}',
+            [ StudentActivityNotesController::class, 'index_edit_notes' ]
+        )
+            ->name ( 'student.catatan-harian-siswa-edit.index' );
+
         Route::post (
             '/activity-notes',
             [ StudentActivityNotesController::class, 'store_activity_notes' ]
         )
             ->name ( 'activity-notes.store' );
+        
+        Route::put (
+            '/activity-notes/{id}',
+            [ StudentActivityNotesController::class, 'update_activity_notes' ]
+        )
+            ->name ( 'activity-notes.update' );
 
         Route::delete (
             '/activity-notes/{id}',

@@ -65,7 +65,7 @@ class StudentActivityNotesController extends Controller
 
         $today = now()->toDateString();
 
-        return view ( 'student.add-catatan-harian-siswa', [ 
+        return view ( 'student.add-catatan-harian-siswa', [
             'role' => auth ()->user ()->role,
             'name' => auth ()->user ()->name,
             'studentId' => $studentId,
@@ -73,6 +73,21 @@ class StudentActivityNotesController extends Controller
             'today' => $today,
 
             'page' => 'Tambah Aktivitas Catatan Harian Siswa'
+        ] );
+    }
+
+    public function index_edit_notes( $noteId )
+    {
+        $activityNote = Note::find($noteId);
+
+        return view ( 'student.edit-catatan-harian-siswa', [
+            'role' => auth ()->user ()->role,
+            'name' => auth ()->user ()->name,
+            'studentName' => $activityNote->student->user->name,
+            'activityNote' => $activityNote,
+            'noteId' => $noteId,
+            'studentId' => $activityNote->student_id,
+            'page' => 'Edit Aktivitas Catatan Harian Siswa'
         ] );
     }
 
@@ -167,6 +182,49 @@ class StudentActivityNotesController extends Controller
 
         return redirect()->route('student.catatan-harian-siswa-table.index')
             ->with('success', 'Sukses Menambahkan Data Aktivitas Baru.');
+    }
+
+    public function update_activity_notes( Request $request, $noteId )
+    {
+        $validatedData = $request->validate ( [ 
+            'studentId'      => 'required|exists:students,id',
+            'hari_tanggal' => 'required|date',
+            'kategori' => 'required|string|max:255',
+            'aktivitas' => 'required|string|max:255',
+            'rincian_aktivitas' => 'required|string',
+            'pertanyaan_orang_tua' => 'nullable|string',
+        ] );
+
+        $note = Note::findOrFail($noteId);
+
+        if (!is_null($note->teacher_answer)) {
+            $validatedData['pertanyaan_orang_tua'] = $note->parent_question;
+        }
+
+        $existingnote = null;
+
+        if ( $validatedData['kategori'] == "Aktivitas Harian" ) {
+            $existingnote = Note::where('student_id', $validatedData['studentId'])
+            ->whereDate('time_stamp', $validatedData['hari_tanggal'])
+            ->where('category', "Aktivitas Harian")
+            ->first();
+        }
+
+        if ($existingnote) {
+            return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
+        }
+
+        $note->update([
+            'time_stamp' => $validatedData['hari_tanggal'],
+            'category' => $validatedData['kategori'],
+            'activity' => $validatedData['aktivitas'],
+            'activity_detail' => $validatedData['rincian_aktivitas'],
+            'parent_question' => $validatedData['pertanyaan_orang_tua'],
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('student.catatan-harian-siswa-table.index')
+            ->with('success', 'Sukses Mengubah Data Aktivitas Baru.');
     }
 
     public function delete_activity_notes( Request $request, $noteId )
