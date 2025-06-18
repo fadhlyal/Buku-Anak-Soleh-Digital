@@ -210,11 +210,23 @@ Route::prefix ( 'student-dashboard' )
         )
             ->name ( 'student.aktivitas-membaca-siswa-add.index' );
 
+        Route::get (
+            '/aktivitas-membaca-siswa-edit/{id}',
+            [ StudentReadActivityController::class, 'index_edit_activity' ]
+        )
+            ->name ( 'student.aktivitas-membaca-siswa-edit.index' );
+
         Route::post (
             '/reading-activity',
             [ StudentReadActivityController::class, 'store_reading_activity' ]
         )
             ->name ( 'reading-activity.store' );
+
+        Route::put (
+            '/reading-activity/{id}',
+            [ StudentReadActivityController::class, 'update_reading_activity' ]
+        )
+            ->name ( 'reading-activity.update' );
 
         Route::delete (
             '/reading-activity/{id}',

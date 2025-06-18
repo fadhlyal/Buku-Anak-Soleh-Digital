@@ -44,6 +44,21 @@ class StudentReadActivityController extends Controller
         ] );
     }
 
+    public function index_edit_activity( $noteId )
+    {
+        $readActivity = ReadActivity::find($noteId);
+
+        return view ( 'student.edit-aktivitas-membaca-siswa', [
+            'role' => auth ()->user ()->role,
+            'name' => auth ()->user ()->name,
+            'studentName' => $readActivity->student->user->name,
+            'readActivity' => $readActivity,
+            'noteId' => $noteId,
+            'studentId' => $readActivity->student_id,
+            'page' => 'Edit Aktivitas Membaca Siswa'
+        ] );
+    }
+
     public function fetchData_aktivitas_membaca_by_id_siswa( Request $request )
     {
         // Safely get the length and start for pagination
@@ -125,6 +140,39 @@ class StudentReadActivityController extends Controller
 
         return redirect()->route('student.aktivitas-membaca-siswa-table.index')
             ->with('success', 'Sukses Menambahkan Data Aktivitas Baru.');
+    }
+
+    public function update_reading_activity( Request $request, $noteId )
+    {
+        $validatedData = $request->validate ( [ 
+            'studentId'      => 'required|exists:students,id',
+            'tanggal' => 'required|date',
+            'judul_buku' => 'required|string|max:255',
+            'halaman_awal' => 'required|string|max:255',
+            'halaman_akhir' => 'required|string|max:255',
+        ] );
+
+        $readActivity = ReadActivity::findOrFail($noteId);
+
+        $existingActivity = ReadActivity::where('student_id', $validatedData['studentId'])
+            ->whereDate('time_stamp', $validatedData['tanggal'])
+            ->where('book_title', $validatedData['judul_buku'])
+            ->where('page', $validatedData['halaman_awal']."-".$validatedData['halaman_akhir'])
+            ->first();
+
+        if ($existingActivity && $existingActivity->id !== $readActivity->id) {
+            return redirect ()->back ()->with ( 'error', 'Tidak Dapat Mengganti dengan Data yang Sudah Ada' );
+        }
+
+        $readActivity->update([
+            'time_stamp' => $validatedData['tanggal'],
+            'book_title' => $validatedData['judul_buku'],
+            'page' => $validatedData['halaman_awal']."-".$validatedData['halaman_akhir'],
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('student.aktivitas-membaca-siswa-table.index')
+            ->with('success', 'Sukses Mengubah Data Aktivitas Baru.');
     }
 
     public function delete_reading_activity( Request $request, $noteId )
