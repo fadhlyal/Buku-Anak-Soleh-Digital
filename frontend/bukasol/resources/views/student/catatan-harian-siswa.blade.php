@@ -118,7 +118,7 @@
                     {
                         data: 'activity_detail',
                         name: 'activity_detail',
-                        title: 'Rincial Aktivitas',
+                        title: 'Rincian Aktivitas',
                         render: function (data, type, row) {
                             const maxLength = 25;
                             if (data && data.length > maxLength) {
