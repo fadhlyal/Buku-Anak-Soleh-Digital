@@ -225,7 +225,7 @@ class TeacherJuzReportController extends Controller
             ->first();
 
         if ($existingReport) {
-            return redirect ()->back ()->with ( 'error', 'Data Tersebut sudah Dibuat.' );
+            return redirect ()->back ()->with ( 'error', 'Data Tersebut sudah Dibuat' );
         }
 
         Juz::create ( [
@@ -238,7 +238,7 @@ class TeacherJuzReportController extends Controller
         ] );
 
         return redirect()->route('teacher.laporan-bacaan-juz-siswa.index' ,[ 'juzNumber' => $validatedData[ 'juz' ], 'id' => $validatedData[ 'studentId' ] ])
-            ->with('success', 'Sukses Menambahkan Data Laporan Baru.');
+            ->with('success', 'Sukses Menambahkan Data Laporan Baru');
     }
 
     public function update_juz_report( Request $request, $reportId )
@@ -273,7 +273,7 @@ class TeacherJuzReportController extends Controller
         ]);
 
         return redirect()->route('teacher.laporan-bacaan-juz-siswa.index', [ 'juzNumber' => $validatedData[ 'juz' ], 'id' => $validatedData[ 'studentId' ] ])
-            ->with('success', 'Sukses Mengubah Data Laporan Baru.');
+            ->with('success', 'Sukses Mengubah Data Laporan Baru');
     }
     
     public function delete_juz_report( Request $request, $reportId )
@@ -282,7 +282,7 @@ class TeacherJuzReportController extends Controller
 
         $juzReport->delete ();
 
-        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
     }
 
     public function teacher_sign_juz_report( Request $request, $reportId )
@@ -294,10 +294,10 @@ class TeacherJuzReportController extends Controller
         $juzReport->save ();
 
         if ( $juzReport->teacher_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 
     public function juz_report_pdf( Request $request, $juzNumber, $studentId )
@@ -351,6 +351,6 @@ class TeacherJuzReportController extends Controller
             $report->save();
         }
 
-        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
+        return redirect()->back()->with('success', 'Semua Data sudah Ditandatangani');
     }
 }

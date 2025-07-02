@@ -186,7 +186,7 @@ class StudentMuhasabahReportController extends Controller
             ->first();
 
         if ($existingReport) {
-            return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal Tersebut sudah Dibuat.' );
+            return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal Tersebut sudah Dibuat' );
         }
 
         if( $validatedData['shalat_sunnah'] === "Sudah" ) {
@@ -241,7 +241,7 @@ class StudentMuhasabahReportController extends Controller
         ] );
 
         return redirect()->route('student.laporan-muhasabah-siswa-table.index')
-            ->with('success', 'Sukses Menambahkan Data Laporan Baru.');
+            ->with('success', 'Sukses Menambahkan Data Laporan Baru');
     }
 
     public function update_muhasabah_report( Request $request, $reportId )
@@ -320,7 +320,7 @@ class StudentMuhasabahReportController extends Controller
         ]);
 
         return redirect()->route('student.laporan-muhasabah-siswa-table.index')
-            ->with('success', 'Sukses Mengubah Data Laporan Baru.');
+            ->with('success', 'Sukses Mengubah Data Laporan Baru');
     }
     
     public function delete_muhasabah_report( Request $request, $reportId )
@@ -329,7 +329,7 @@ class StudentMuhasabahReportController extends Controller
 
         $muhasabahReport->delete ();
 
-        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
     }
 
     public function parent_sign_muhasabah_report( Request $request, $reportId )
@@ -342,7 +342,7 @@ class StudentMuhasabahReportController extends Controller
         $parentCode = $student->parent_code;
 
         if ($validated['parentCode'] !== $parentCode) {
-            return response()->json([ 'error' => 'Kode Unik Salah.']);
+            return response()->json([ 'error' => 'Kode Unik Salah']);
         }
 
         $muhasabahReport = MuhasabahReport::findOrFail ( $reportId );
@@ -350,9 +350,9 @@ class StudentMuhasabahReportController extends Controller
         $muhasabahReport->save ();
 
         if ( $muhasabahReport->parent_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 }

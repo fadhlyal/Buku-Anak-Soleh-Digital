@@ -233,7 +233,7 @@ class TeacherActivityNotesController extends Controller
         ]);
 
         return redirect()->route('teacher.catatan-harian-siswa-detail.index', ['id' => $noteId])
-            ->with('success', 'Menjawab Pertanyaan Orang Tua.');
+            ->with('success', 'Menjawab Pertanyaan Orang Tua');
     }
 
     public function teacher_sign_activity_notes( Request $request, $noteId )
@@ -245,10 +245,10 @@ class TeacherActivityNotesController extends Controller
         $activityNote->save ();
 
         if ( $activityNote->teacher_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 
     public function activity_notes_pdf( Request $request, $studentId )
@@ -305,6 +305,6 @@ class TeacherActivityNotesController extends Controller
             $report->save();
         }
 
-        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
+        return redirect()->back()->with('success', 'Semua Data sudah Ditandatangani');
     }
 }

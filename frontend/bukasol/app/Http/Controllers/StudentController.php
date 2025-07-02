@@ -62,7 +62,7 @@ class StudentController extends Controller
         ] );
 
         return redirect()->route('admin.student-table.index')
-            ->with('success', 'Sukses Menambahkan Data Siswa Baru.');
+            ->with('success', 'Sukses Menambahkan Data Siswa Baru');
     }
 
     /**
@@ -109,10 +109,10 @@ class StudentController extends Controller
 
         if ( $request->ajax () )
         {
-            return response ()->json ( [ 'success' => 'Sukses Mengubah Data Siswa.' ] );
+            return response ()->json ( [ 'success' => 'Sukses Mengubah Data Siswa' ] );
         }
 
-        return response ()->json ( [ 'error' => 'Gagal Mengubah Data Siswa.' ] );
+        return response ()->json ( [ 'error' => 'Gagal Mengubah Data Siswa' ] );
     }
 
     /**
@@ -144,9 +144,9 @@ class StudentController extends Controller
         // Check if both student and user no longer exist
         if ( ! $studentExists && ! $userExists )
         {
-            return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+            return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
         }
 
-        return response ()->json ( [ 'error' => 'Data Siswa Gagal Dihapus.' ] );
+        return response ()->json ( [ 'error' => 'Data Siswa Gagal Dihapus' ] );
     }
 }

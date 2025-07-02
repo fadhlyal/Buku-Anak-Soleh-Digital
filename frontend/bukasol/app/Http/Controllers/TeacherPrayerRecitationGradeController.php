@@ -204,7 +204,7 @@ class TeacherPrayerRecitationGradeController extends Controller
             ->first();
 
         if ($existingGrade) {
-            return redirect ()->back ()->with ( 'error', 'Data Nilai dengan Bacaan Tersebut sudah ada.' );
+            return redirect ()->back ()->with ( 'error', 'Data Nilai dengan Bacaan Tersebut sudah ada' );
         }
 
         PrayerRecitationGrade::create ( [ 
@@ -218,7 +218,7 @@ class TeacherPrayerRecitationGradeController extends Controller
         ] );
 
         return redirect()->route('teacher.nilai-uji-bacaan-siswa-detail.index', ['id' => $validatedData['studentId']])
-            ->with('success', 'Sukses Menambahkan Data Nilai Baru.');
+            ->with('success', 'Sukses Menambahkan Data Nilai Baru');
     }
 
     public function update_prayer_recitation_grade( Request $request, $gradeId )
@@ -249,7 +249,7 @@ class TeacherPrayerRecitationGradeController extends Controller
         ]);
 
         return redirect()->route('teacher.nilai-uji-bacaan-siswa-detail.index', ['id' => $validatedData['studentId']])
-            ->with('success', 'Sukses Mengubah Data Nilai Baru.');
+            ->with('success', 'Sukses Mengubah Data Nilai Baru');
     }
 
     public function delete_prayer_recitation_grade( Request $request, $gradeId )
@@ -259,7 +259,7 @@ class TeacherPrayerRecitationGradeController extends Controller
 
         $prayerRecitationGrade->delete ();
 
-        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
     }
 
     public function teacher_sign_prayer_recitation_grade( Request $request, $gradeId )
@@ -272,10 +272,10 @@ class TeacherPrayerRecitationGradeController extends Controller
         $prayerRecitationGrade->save ();
 
         if ( $prayerRecitationGrade->teacher_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 
     public function prayer_recitation_grade_pdf( $studentId )
@@ -331,6 +331,6 @@ class TeacherPrayerRecitationGradeController extends Controller
             $report->save();
         }
 
-        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
+        return redirect()->back()->with('success', 'Semua Data sudah Ditandatangani');
     }
 }

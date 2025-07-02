@@ -219,10 +219,10 @@ class TeacherMuhasabahReportController extends Controller
         $muhasabahReport->save ();
 
         if ( $muhasabahReport->teacher_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 
     public function muhasabah_report_pdf( Request $request, $studentId )
@@ -273,6 +273,6 @@ class TeacherMuhasabahReportController extends Controller
             $report->save();
         }
 
-        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
+        return redirect()->back()->with('success', 'Semua Data sudah Ditandatangani');
     }
 }

@@ -126,7 +126,7 @@ class StudentReadActivityController extends Controller
             ->first();
 
         if ($existingActivity) {
-            return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal, Judul, dan Halaman Tersebut sudah Dibuat.' );
+            return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal, Judul, dan Halaman Tersebut sudah Dibuat' );
         }
 
         ReadActivity::create ( [
@@ -139,7 +139,7 @@ class StudentReadActivityController extends Controller
         ] );
 
         return redirect()->route('student.aktivitas-membaca-siswa-table.index')
-            ->with('success', 'Sukses Menambahkan Data Aktivitas Baru.');
+            ->with('success', 'Sukses Menambahkan Data Aktivitas Baru');
     }
 
     public function update_reading_activity( Request $request, $noteId )
@@ -172,7 +172,7 @@ class StudentReadActivityController extends Controller
         ]);
 
         return redirect()->route('student.aktivitas-membaca-siswa-table.index')
-            ->with('success', 'Sukses Mengubah Data Aktivitas Baru.');
+            ->with('success', 'Sukses Mengubah Data Aktivitas Baru');
     }
 
     public function delete_reading_activity( Request $request, $noteId )
@@ -181,7 +181,7 @@ class StudentReadActivityController extends Controller
 
         $readActivity->delete ();
 
-        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
     }
 
     public function parent_sign_reading_activity( Request $request, $noteId )
@@ -194,7 +194,7 @@ class StudentReadActivityController extends Controller
         $parentCode = $student->parent_code;
 
         if ($validated['parentCode'] !== $parentCode) {
-            return response()->json([ 'error' => 'Kode Unik Salah.']);
+            return response()->json([ 'error' => 'Kode Unik Salah']);
         }
 
         $readActivity = ReadActivity::findOrFail ( $noteId );
@@ -202,9 +202,9 @@ class StudentReadActivityController extends Controller
         $readActivity->save ();
 
         if ( $readActivity->parent_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 }

@@ -95,9 +95,9 @@ class StudentPrayerRecitationGradeController extends Controller
         $prayerRecitationGrade->save ();
 
         if ( $prayerRecitationGrade->parent_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 }

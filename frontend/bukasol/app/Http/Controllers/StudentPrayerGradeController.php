@@ -89,7 +89,7 @@ class StudentPrayerGradeController extends Controller
         $parentCode = $student->parent_code;
 
         if ($validated['parentCode'] !== $parentCode) {
-            return response()->json([ 'error' => 'Kode Unik Salah.']);
+            return response()->json([ 'error' => 'Kode Unik Salah']);
         }
 
         $prayerGrade = PrayerGrade::findOrFail ( $gradeId );
@@ -97,9 +97,9 @@ class StudentPrayerGradeController extends Controller
         $prayerGrade->save ();
 
         if ( $prayerGrade->parent_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 }

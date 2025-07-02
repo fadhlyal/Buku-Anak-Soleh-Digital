@@ -225,7 +225,7 @@ class TeacherViolationReportController extends Controller
         ] );
 
         return redirect()->route('teacher.laporan-pelanggaran-siswa.index', ['id' => $validatedData['studentId']])
-            ->with('success', 'Sukses Menambahkan Data Laporan Baru.');
+            ->with('success', 'Sukses Menambahkan Data Laporan Baru');
     }
 
     public function update_violation_report( Request $request, $reportId )
@@ -266,7 +266,7 @@ class TeacherViolationReportController extends Controller
 
         $violationReport->delete ();
 
-        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
     }
 
     public function teacher_sign_violation_report( Request $request, $reportId )
@@ -278,10 +278,10 @@ class TeacherViolationReportController extends Controller
         $violationReport->save ();
 
         if ( $violationReport->teacher_sign ) {
-            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani.' ] );
+            return response ()->json ( [ 'success' => 'Data Sudah Ditandatangani' ] );
         }
 
-        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani.' ] );
+        return response ()->json ( [ 'success' => 'Data Tidak Jadi Ditandatangani' ] );
     }
 
     public function violation_report_pdf( Request $request, $studentId )
@@ -332,6 +332,6 @@ class TeacherViolationReportController extends Controller
             $report->save();
         }
 
-        return redirect()->back()->with('success', 'Semua data sudah ditandatangani');
+        return redirect()->back()->with('success', 'Semua Data sudah Ditandatangani');
     }
 }

@@ -149,7 +149,7 @@ class StudentActivityNotesController extends Controller
     {
         $validatedData = $request->validate ( [ 
             'studentId'      => 'required|exists:students,id',
-            'hari_tanggal' => 'required|date',
+            'tanggal' => 'required|date',
             'kategori' => 'required|string|max:255',
             'aktivitas' => 'required|string|max:255',
             'rincian_aktivitas' => 'required|string',
@@ -160,18 +160,18 @@ class StudentActivityNotesController extends Controller
         
         if ( $validatedData['kategori'] == "Aktivitas Harian" ) {
             $existingnote = Note::where('student_id', $validatedData['studentId'])
-            ->whereDate('time_stamp', $validatedData['hari_tanggal'])
+            ->whereDate('time_stamp', $validatedData['tanggal'])
             ->where('category', "Aktivitas Harian")
             ->first();
         }
 
         if ($existingnote) {
-            return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal Tersebut sudah Dibuat.' );
+            return redirect ()->back ()->with ( 'error', 'Data dengan Tanggal Tersebut sudah Dibuat' );
         }
 
         Note::create ( [
             'student_id' => $validatedData[ 'studentId' ],
-            'time_stamp' => $validatedData[ 'hari_tanggal' ],
+            'time_stamp' => $validatedData[ 'tanggal' ],
             'category'  => $validatedData[ 'kategori' ],
             'activity'  => $validatedData[ 'aktivitas' ],
             'activity_detail'  => $validatedData[ 'rincian_aktivitas' ],
@@ -181,14 +181,14 @@ class StudentActivityNotesController extends Controller
         ] );
 
         return redirect()->route('student.catatan-harian-siswa-table.index')
-            ->with('success', 'Sukses Menambahkan Data Aktivitas Baru.');
+            ->with('success', 'Sukses Menambahkan Data Aktivitas Baru');
     }
 
     public function update_activity_notes( Request $request, $noteId )
     {
         $validatedData = $request->validate ( [ 
             'studentId'      => 'required|exists:students,id',
-            'hari_tanggal' => 'required|date',
+            'tanggal' => 'required|date',
             'kategori' => 'required|string|max:255',
             'aktivitas' => 'required|string|max:255',
             'rincian_aktivitas' => 'required|string',
@@ -205,7 +205,7 @@ class StudentActivityNotesController extends Controller
 
         if ( $validatedData['kategori'] == "Aktivitas Harian" ) {
             $existingnote = Note::where('student_id', $validatedData['studentId'])
-            ->whereDate('time_stamp', $validatedData['hari_tanggal'])
+            ->whereDate('time_stamp', $validatedData['tanggal'])
             ->where('category', "Aktivitas Harian")
             ->first();
         }
@@ -215,7 +215,7 @@ class StudentActivityNotesController extends Controller
         }
 
         $note->update([
-            'time_stamp' => $validatedData['hari_tanggal'],
+            'time_stamp' => $validatedData['tanggal'],
             'category' => $validatedData['kategori'],
             'activity' => $validatedData['aktivitas'],
             'activity_detail' => $validatedData['rincian_aktivitas'],
@@ -224,7 +224,7 @@ class StudentActivityNotesController extends Controller
         ]);
 
         return redirect()->route('student.catatan-harian-siswa-table.index')
-            ->with('success', 'Sukses Mengubah Data Aktivitas Baru.');
+            ->with('success', 'Sukses Mengubah Data Aktivitas Baru');
     }
 
     public function delete_activity_notes( Request $request, $noteId )
@@ -233,6 +233,6 @@ class StudentActivityNotesController extends Controller
 
         $activityNote->delete ();
 
-        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus.' ] );
+        return response ()->json ( [ 'success' => 'Data Siswa Berhasil Dihapus' ] );
     }
 }

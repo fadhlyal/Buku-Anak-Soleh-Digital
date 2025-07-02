@@ -38,7 +38,7 @@ class TeacherController extends Controller
         $password = $letters . $numbers;
 
         // Create the User first
-        $user = User::create ( [ 
+        $user = User::create ( [
             'name'     => $validatedData[ 'name' ],
             'username' => $username,
             'password' => Hash::make ( $password ),
@@ -53,7 +53,7 @@ class TeacherController extends Controller
         ] );
 
         return redirect()->route('admin.teacher-table.index')
-            ->with('success', 'Sukses Menambahkan Data Guru Baru.');
+            ->with('success', 'Sukses Menambahkan Data Guru Baru');
     }
 
     /**
@@ -99,7 +99,7 @@ class TeacherController extends Controller
             return response ()->json ( [ 'success' => 'Sukses Mengubah Data Guru.' ] );
         }
 
-        return response ()->json ( [ 'error' => 'Gagal Mengubah Data Guru.' ] );
+        return response ()->json ( [ 'error' => 'Gagal Mengubah Data Guru' ] );
     }
 
     /**
@@ -142,9 +142,9 @@ class TeacherController extends Controller
         // Check if both teacher and user no longer exist
         if ( ! $teacherExists && ! $userExists )
         {
-            return response ()->json ( [ 'success' => 'Data Guru Berhasil Dihapus.' ] );
+            return response ()->json ( [ 'success' => 'Data Guru Berhasil Dihapus' ] );
         }
 
-        return response ()->json ( [ 'error' => 'Data Guru Gagal Dihapus.' ] );
+        return response ()->json ( [ 'error' => 'Data Guru Gagal Dihapus' ] );
     }
 }
