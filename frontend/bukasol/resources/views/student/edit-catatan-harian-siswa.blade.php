@@ -29,8 +29,8 @@
 
                     <!-- Hari/Tanggal Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="hari_tanggal">Hari/Tanggal</label>
-                        <input class="form-control rounded-3 border-dark border-2" id="hari_tanggal" name="hari_tanggal" type="date" value="{{ old('hari_tanggal', $activityNote->time_stamp->toDateString()) }}" required>
+                        <label class="form-label fw-semibold" for="tanggal">Hari/Tanggal</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="tanggal" name="tanggal" type="date" value="{{ old('tanggal', $activityNote->time_stamp->toDateString()) }}" required>
                     </div>
 
                     <!-- Kategori Input -->

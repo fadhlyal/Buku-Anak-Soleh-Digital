@@ -34,8 +34,8 @@
 
                     <!-- Hari/Tanggal Input -->
                     <div class="mb-3">
-                        <label class="form-label fw-semibold" for="hari_tanggal">Hari/Tanggal</label>
-                        <input class="form-control rounded-3 border-dark border-2" id="hari_tanggal" name="hari_tanggal" type="date" value="{{ $today }}" required>
+                        <label class="form-label fw-semibold" for="hari_tanggal">Tanggal</label>
+                        <input class="form-control rounded-3 border-dark border-2" id="tanggal" name="tanggal" type="date" value="{{ $today }}" required>
                     </div>
 
                     <!-- Kategori Input -->
